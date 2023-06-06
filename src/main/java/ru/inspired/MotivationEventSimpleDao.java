@@ -15,9 +15,9 @@ public class MotivationEventSimpleDao implements MotivationEventDao{
         events.add(new MotivationEvent(2,"сделать что-то еще полезное",10,0));
     }
 
-    //    public MotivationEventSimpleDao(List<MotivationEvent> events) {
-    //        this.events = events;
-    //    }
+    public MotivationEventSimpleDao(List<MotivationEvent> events) {
+        this.events = events;
+    }
 
     @Override
     public List<MotivationEvent> getMotivationEvents() {

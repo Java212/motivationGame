@@ -6,13 +6,13 @@
 
     <bean id="event1"  name="event1" class="ru.inspired.model.MotivationEvent">
         <constructor-arg name="id" value="1"/>
-        <constructor-arg name="description" value="Выполнен за допустимое время процесс УТРО"/>
+        <constructor-arg name="description" value="Сделана утренняя зарядка"/>
         <constructor-arg name="fee" value="5"/>
         <constructor-arg name="bonus" value="5"/>
     </bean>
     <bean id="event2"  name="event2" class="ru.inspired.model.MotivationEvent">
         <constructor-arg name="id" value="2"/>
-        <constructor-arg name="description" value="Выполнен вовремя процесс ВЕЧЕР"/>
+        <constructor-arg name="description" value="Почищены зубы 2 раза"/>
         <constructor-arg name="fee" value="5"/>
         <constructor-arg name="bonus" value="5"/>
     </bean>

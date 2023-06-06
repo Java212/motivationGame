@@ -19,9 +19,9 @@ public class MotivationEventsChecker {
 
     public static Logger LOGGER = LogManager.getLogger(MotivationEventsChecker.class);
 
-    MotivationEventDao motivationEventDao;
-    DailyLogProcessor logProcessor;
-    MotivationScoreCalc calc;
+    private final MotivationEventDao motivationEventDao;
+    private final DailyLogProcessor logProcessor;
+    private final MotivationScoreCalc calc;
 
     public MotivationEventsChecker(MotivationEventDao motivationEventDao,
                                    DailyLogProcessor logProcessor,

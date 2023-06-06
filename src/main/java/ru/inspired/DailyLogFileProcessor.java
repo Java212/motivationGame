@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DailyLogFileProcessor implements DailyLogProcessor {
 
-    public static final String DATE_FORMAT = "dd.MM.yy";
+    static final String DATE_FORMAT = "dd.MM.yy";
     private static final String DEFAULT_FILE_NAME = "motivationLog.csv";
     private final MotivationEventDao motivationEventDao;
 
