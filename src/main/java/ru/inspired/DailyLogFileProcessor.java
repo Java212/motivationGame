@@ -19,7 +19,7 @@ public class DailyLogFileProcessor implements DailyLogProcessor {
 
     public static final String DATE_FORMAT = "dd.MM.yy";
     private static final String DEFAULT_FILE_NAME = "motivationLog.csv";
-    MotivationEventDao motivationEventDao;
+    private final MotivationEventDao motivationEventDao;
 
     public DailyLogFileProcessor(MotivationEventDao motivationEventDao) {
         this.motivationEventDao = motivationEventDao;

@@ -12,7 +12,8 @@ public class Main {
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
         reader.loadBeanDefinitions(new ClassPathResource("config.xml"));
 
-        MotivationEventsChecker checker = factory.getBean("motivationChecker", MotivationEventsChecker.class);
+        //MotivationEventsChecker checker = factory.getBean("motivationChecker", MotivationEventsChecker.class);
+        MotivationEventsChecker checker = (MotivationEventsChecker)factory.getBean("motivationChecker");
         checker.run();
 
     }
