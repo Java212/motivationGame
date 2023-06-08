@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="motivationEventDao" class="ru.inspired.MotivationEventSimpleDao">
+        <constructor-arg name="events" ref="events"/>
+    </bean>
+
+    <bean id="event1"  name="event1" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="description" value="Сделана утренняя зарядка"/>
+        <constructor-arg name="fee" value="5"/>
+        <constructor-arg name="bonus" value="5"/>
+    </bean>
+    <bean id="event2"  name="event2" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="description" value="Почищены зубы 2 раза"/>
+        <constructor-arg name="fee" value="5"/>
+        <constructor-arg name="bonus" value="5"/>
+    </bean>
+    <bean id="event3"  name="event3" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="3"/>
+        <constructor-arg name="description" value="Сделать домашнее задание"/>
+        <constructor-arg name="fee" value="3"/>
+        <constructor-arg name="bonus" value="5"/>
+    </bean>
+
+    <bean id="events" name="events" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="event1" />
+                <ref bean="event2" />
+                <ref bean="event3"/>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>
