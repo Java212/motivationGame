@@ -4,8 +4,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="events.xml"/>
+    <!--<import resource="events.xml"/>
 
+    <bean id="motivationEventDao" class="ru.inspired.MotivationEventSimpleDao">
+        <constructor-arg name="events" ref="events"/>
+    </bean>-->
+    <import resource="myEvents.xml"/>
     <bean id="motivationEventDao" class="ru.inspired.MotivationEventSimpleDao">
         <constructor-arg name="events" ref="events"/>
     </bean>

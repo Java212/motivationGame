@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="event1"  name="event1" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="description" value="В 6:00 поглять с собакой"/>
+        <constructor-arg name="fee" value="5"/>
+        <constructor-arg name="bonus" value="5"/>
+    </bean>
+    <bean id="event2"  name="event2" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="description" value="В 10:00 отчитаться о командировке"/>
+        <constructor-arg name="fee" value="5"/>
+        <constructor-arg name="bonus" value="0"/>
+    </bean>
+    <bean id="event3"  name="event3" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="3"/>
+        <constructor-arg name="description" value="В 14:00 подписать текущие документы"/>
+        <constructor-arg name="fee" value="5"/>
+        <constructor-arg name="bonus" value="5"/>
+    </bean>
+    <bean id="event4"  name="event4" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="4"/>
+        <constructor-arg name="description" value="В 17.20 заехать в магазин"/>
+        <constructor-arg name="fee" value="2"/>
+        <constructor-arg name="bonus" value="5"/>
+    </bean>
+    <bean id="event5"  name="event5" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="5"/>
+        <constructor-arg name="description" value="В 18:00 поглять с собакой"/>
+        <constructor-arg name="fee" value="5"/>
+        <constructor-arg name="bonus" value="5"/>
+    </bean>
+
+    <bean id="events" name="events" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="event1" />
+                <ref bean="event2" />
+                <ref bean="event3" />
+                <ref bean="event4" />
+                <ref bean="event5" />
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>
