@@ -6,15 +6,21 @@
 
     <bean id="event1"  name="event1" class="ru.inspired.model.MotivationEvent">
         <constructor-arg name="id" value="1"/>
-        <constructor-arg name="description" value="Сделана утренняя зарядка"/>
-        <constructor-arg name="fee" value="5"/>
-        <constructor-arg name="bonus" value="5"/>
+        <constructor-arg name="description" value="Сделана утренняя пробежка"/>
+        <constructor-arg name="fee" value="10"/>
+        <constructor-arg name="bonus" value="10"/>
     </bean>
     <bean id="event2"  name="event2" class="ru.inspired.model.MotivationEvent">
         <constructor-arg name="id" value="2"/>
-        <constructor-arg name="description" value="Почищены зубы 2 раза"/>
-        <constructor-arg name="fee" value="5"/>
+        <constructor-arg name="description" value="Вечером сходил в тренажерный зал"/>
+        <constructor-arg name="fee" value="0"/>
         <constructor-arg name="bonus" value="5"/>
+    </bean>
+    <bean id="event3"   name="event3" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="3"/>
+        <constructor-arg name="description" value="Своевременно сдал ДЗ"/>
+        <constructor-arg name="fee" value="5"/>
+        <constructor-arg name="bonus" value="10"/>
     </bean>
 
     <bean id="events" name="events" class="java.util.ArrayList">
@@ -22,6 +28,7 @@
             <list>
                 <ref bean="event1" />
                 <ref bean="event2" />
+                <ref bean="event3" />
             </list>
         </constructor-arg>
     </bean>

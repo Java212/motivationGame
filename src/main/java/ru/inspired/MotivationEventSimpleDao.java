@@ -26,6 +26,13 @@ public class MotivationEventSimpleDao implements MotivationEventDao{
 
     @Override
     public MotivationEvent getEventById(int id) throws NoSuchElementException {
-        return events.stream().filter(e->e.getId() == id).findFirst().get();
+       try {
+           if  (!(id > events.size())) {
+               return events.stream().filter(e->e.getId() == id).findFirst().get();
+           }
+       } catch (NoSuchElementException e) {
+          System.out.println("There is no element with this id");
+       }
+         throw new NoSuchElementException ();
     }
 }
