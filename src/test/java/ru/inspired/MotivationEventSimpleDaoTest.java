@@ -9,6 +9,7 @@ import ru.inspired.model.MotivationEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class MotivationEventSimpleDaoTest {
     @Test
@@ -24,6 +25,11 @@ public class MotivationEventSimpleDaoTest {
         MotivationEvent event = motivationEvents.getEventById(1);
         Assertions.assertEquals("сделать что-то",event.getDescription());
     }
+    @Test
+    void test_that_class_throws_an_exception_when_an_element_is_not_found_by_the_seam(){
+        MotivationEventSimpleDao motivationEvents = new MotivationEventSimpleDao();
+        Assertions.assertThrows(NoSuchElementException.class,()->motivationEvents.getEventById(7));
+    }
 
     @Test
     void test_that_the_class_is_initialized_with_list(){
@@ -35,8 +41,5 @@ public class MotivationEventSimpleDaoTest {
         MotivationEventSimpleDao motivationEvents = new MotivationEventSimpleDao(eventsList);
         MotivationEvent event =  motivationEvents.getEventById(3);
         Assertions.assertEquals("Сделать домашнее задание",event.getDescription());
-
-
-
     }
 }
