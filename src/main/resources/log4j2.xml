@@ -13,6 +13,18 @@
         <Logger name="org.springframework" level="debug">
             <AppenderRef ref="Console"/>
         </Logger>
+        <Logger name="ru.inspired.model.MotivationEventsChecker" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="ru.inspired.model.DailyLogFileProcessor" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="ru.inspired.model.MotivationEventSimpleDao" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="ru.inspired.model.MotivationScoreCalc" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
         <Root level="warn">
             <AppenderRef ref="Console"/>
         </Root>
