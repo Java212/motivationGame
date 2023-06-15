@@ -17,6 +17,7 @@ public class HelloServlet extends HttpServlet {
         try (PrintWriter writer = response.getWriter()) {
             writer.println("<h2>Hello from HelloServlet</h2>");
         }
+        //request.getRequestDispatcher("index").forward(request,response);
     }
 
     @Override
@@ -24,6 +25,15 @@ public class HelloServlet extends HttpServlet {
         resp.setContentType("application/json");
         try (PrintWriter writer = resp.getWriter()) {
             writer.println("{\"greeting\": \"hello\"}");
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String name = req.getParameter("name");
+        resp.setContentType("application/json");
+        try (PrintWriter writer = resp.getWriter()) {
+            writer.println("{\"greeting\": \"hello, " + name +"\"}");
         }
     }
 }
