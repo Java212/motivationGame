@@ -33,7 +33,7 @@ public class FillInTodaysResultsServletTest {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
 
-        StringReader stringReader = new StringReader("1=on&2=off");
+        StringReader stringReader = new StringReader("1=on");
         BufferedReader reader = new BufferedReader(stringReader);
         when(request.getReader()).thenReturn(reader);
 
