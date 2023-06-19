@@ -5,6 +5,8 @@ plugins {
 group 'ru.inspiredTeam'
 version '1.0-SNAPSHOT'
 
+
+// для компиляции исходного кода и тестов в формате UTF-8
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 

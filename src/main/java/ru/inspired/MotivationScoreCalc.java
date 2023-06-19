@@ -13,7 +13,7 @@ public class MotivationScoreCalc {
 
     public int calculateScore(List<DailyLog> log){
         int score = initialScore;
-        for(DailyLog logEntry: log){
+        for(DailyLog logEntry: log){ // проходим по всем записям
             switch (logEntry.getStatus()){
                 case DONE -> score += logEntry.getEvent().getBonus();
                 case FAILED -> score -= logEntry.getEvent().getFee();

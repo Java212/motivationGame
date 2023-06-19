@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class MotivationEventSimpleDao implements MotivationEventDao{
+public class MotivationEventSimpleDao implements MotivationEventDao{ // нужен для обработки отчета за каждый день
     private final List<MotivationEvent> events;
 
     public MotivationEventSimpleDao() {
@@ -26,6 +26,7 @@ public class MotivationEventSimpleDao implements MotivationEventDao{
 
     @Override
     public MotivationEvent getEventById(int id) throws NoSuchElementException {
+        // с помощью stream проходим и находим нужное id, после возвращаем его
         return events.stream().filter(e->e.getId() == id).findFirst().get();
     }
 }

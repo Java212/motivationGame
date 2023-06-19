@@ -15,13 +15,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MotivationEventsChecker {
+public class MotivationEventsChecker { // выводит на экран событие которые мы должны выполнить (взаимодействует с пользователем)
 
     public static Logger LOGGER = LogManager.getLogger(MotivationEventsChecker.class);
 
-    private final MotivationEventDao motivationEventDao;
-    private final DailyLogProcessor logProcessor;
-    private final MotivationScoreCalc calc;
+    private final MotivationEventDao motivationEventDao; // предоставляет список событий
+    private final DailyLogProcessor logProcessor; // записывает результат
+    private final MotivationScoreCalc calc; // подсчитывает очки
 
     public MotivationEventsChecker(MotivationEventDao motivationEventDao,
                                    DailyLogProcessor logProcessor,

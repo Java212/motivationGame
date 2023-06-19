@@ -21,6 +21,8 @@ public class DailyLogFileProcessor implements DailyLogProcessor {
     private static final String DEFAULT_FILE_NAME = "motivationLog.csv";
     private final MotivationEventDao motivationEventDao;
 
+
+    // получать по id само событие, который записан в файле
     public DailyLogFileProcessor(MotivationEventDao motivationEventDao) {
         this.motivationEventDao = motivationEventDao;
     }

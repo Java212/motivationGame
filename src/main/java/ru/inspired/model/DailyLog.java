@@ -2,9 +2,9 @@ package ru.inspired.model;
 
 import java.time.LocalDate;
 
-public class DailyLog {
+public class DailyLog { // ежедневный отчет
     LocalDate date;
-    MotivationEvent event;
+    MotivationEvent event; // событие
     CompletionStatus status;
 
     public DailyLog(MotivationEvent event, CompletionStatus status) {

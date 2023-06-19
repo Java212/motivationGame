@@ -8,7 +8,7 @@ import java.util.List;
 public class MotivationEventFileDao implements MotivationEventDao {
     @Override
     public List<MotivationEvent> getMotivationEvents() {
-        return new LinkedList<>(); //как-то прочитали из фала список объектов MotivationEvent
+        return new LinkedList<>(); //как-то прочитали из файла список объектов MotivationEvent
     }
 
     @Override

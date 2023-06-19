@@ -1,6 +1,6 @@
 package ru.inspired.model;
 
 public enum CompletionStatus {
-    DONE,
-    FAILED
+    DONE, // сделано
+    FAILED // не сделано
 }

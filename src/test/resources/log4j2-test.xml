@@ -6,10 +6,10 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="org.apache" level="error">
+        <Logger name="org.apache" level="debug">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="org.springframework" level="error">
+        <Logger name="org.springframework" level="debug">
             <AppenderRef ref="Console"/>
         </Logger>
         <Logger name="ru.inspired" level="trace">

@@ -1,10 +1,10 @@
 package ru.inspired.model;
 
 public class MotivationEvent {
-    private final int id;
-    private final String description;
-    private final int bonus;
-    private final int fee;
+    private final int id; // id события
+    private final String description; // описание события
+    private final int bonus; // начисляем очки
+    private final int fee; // отнимаем очки
 
     public MotivationEvent(int id, String description, int bonus, int fee) {
         this.id = id;

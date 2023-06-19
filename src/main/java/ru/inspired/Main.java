@@ -8,11 +8,13 @@ public class Main {
     public static void main(String[] args) {
 
         //init spring beans
-        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+        DefaultListableBeanFactory factory = new DefaultListableBeanFactory(); // создает объекты
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory); // считывает файл xml
         reader.loadBeanDefinitions(new ClassPathResource("config.xml"));
 
         //MotivationEventsChecker checker = factory.getBean("motivationChecker", MotivationEventsChecker.class);
+
+        // getBean - достаем объект который нам нужен
         MotivationEventsChecker checker = (MotivationEventsChecker)factory.getBean("motivationChecker");
 
         //без использования спринга было бы:
