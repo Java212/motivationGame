@@ -4,9 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.inspired.model.CompletionStatus;
 import ru.inspired.model.DailyLog;
+import ru.inspired.model.MotivationEvent;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DailyProcessorMappingTest {
 
@@ -49,5 +53,14 @@ public class DailyProcessorMappingTest {
         Assertions.assertThrows(ParseException.class,
                 ()-> processor.mapDailyLog(dateFormat,"not three parts separated by comma"));
 
+    }
+
+    @Test
+    void testFileRead() throws IOException {
+        MotivationEventDao eventDao = new MotivationEventFileDao();
+        DailyLogFileProcessor processor = new DailyLogFileProcessor(eventDao);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
+        List<DailyLog> dailyLog = processor.getLog();
+        Assertions.assertEquals(3,dailyLog.size());
     }
 }

@@ -12,6 +12,7 @@ import ru.inspired.model.DailyLog;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 public class DailyProcessorSpringTest {
@@ -68,4 +69,27 @@ public class DailyProcessorSpringTest {
         List<DailyLog> dailyLog = processorUnderTest.getLog();
         Assertions.assertEquals(3,dailyLog.size());
     }
+
+    @Test
+    void testFileReadAndContent() throws IOException {
+        List<DailyLog> log = processorUnderTest.getLog();
+
+        Assertions.assertEquals(3, log.size());
+
+        DailyLog log1 = log.get(0);
+        Assertions.assertEquals(LocalDate.of(2023, 6, 5), log1.getDate());
+        Assertions.assertEquals(1, log1.getEvent().getId());
+        Assertions.assertEquals(CompletionStatus.DONE, log1.getStatus());
+
+        DailyLog log2 = log.get(1);
+        Assertions.assertEquals(LocalDate.of(2023, 6, 10), log2.getDate());
+        Assertions.assertEquals(2, log2.getEvent().getId());
+        Assertions.assertEquals(CompletionStatus.FAILED, log2.getStatus());
+
+        DailyLog log3 = log.get(2);
+        Assertions.assertEquals(LocalDate.of(2023, 6, 12), log3.getDate());
+        Assertions.assertEquals(3, log3.getEvent().getId());
+        Assertions.assertEquals(CompletionStatus.FAILED, log3.getStatus());
+    }
+
 }

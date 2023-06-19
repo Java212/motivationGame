@@ -10,9 +10,12 @@ public class MotivationEventFileDao implements MotivationEventDao {
     public List<MotivationEvent> getMotivationEvents() {
         return new LinkedList<>(); //как-то прочитали из файла список объектов MotivationEvent
     }
+    // getMotivationEvents() - возвращает пустой список new LinkedList<>(),
+    // не выполняя чтение из файла. Это приводит к неправильному поведению.
 
     @Override
     public MotivationEvent getEventById(int id) {
         return new MotivationEvent(id,"some task",1,0);
     }
+
 }
