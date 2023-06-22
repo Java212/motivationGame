@@ -2,7 +2,7 @@
 <%@page import="java.time.LocalDate" %>
 <html>
 <head>
-  <!-- meta charset="utf-8" -->
+   <!--meta charset="utf-8"-->
   <title>JSP exercise</title>
 </head>
 <body>
