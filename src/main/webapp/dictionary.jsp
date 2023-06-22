@@ -8,14 +8,20 @@
   <link rel="stylesheet" href="./styles.css" type="text/css"/>
 </head>
 <body>
-<form method="post" action="jsp">
-    <h1> Заполняем результат за <%=new java.util.Date() %> </h1>
-    <ul>
-        <c:forEach var="event" items="${records}">
-                    <li> <c:out value="${event.description}"/> <input type="checkbox" name="${event.id}"/></li>
-        </c:forEach>
-    </ul>
-    <input type="submit"/>
-</form>
+    <h1> Таблица </h1>
+    <table border="1" cellspacing="0" cellpadding="2">
+       <tr>
+         <th>Name</th>
+         <th>Surname</th>
+         <th>Phone</th>
+       </tr>
+       <c:forEach var="record" items="${records}">
+           <tr>
+                  <td> <c:out value="${record.getName()}"/> </td>
+                  <td> <c:out value="${record.getSurname()}"/> </td>
+                  <td> <c:out value="${record.getPhone()}"/> </td>
+           </tr>
+       </c:forEach>
+    </table>
 </body>
 </html>
