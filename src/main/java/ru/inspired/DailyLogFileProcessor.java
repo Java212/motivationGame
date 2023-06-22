@@ -58,7 +58,7 @@ public class DailyLogFileProcessor implements DailyLogProcessor {
     @Override
     public void reWriteLog(List<DailyLog> log) throws IOException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        try (FileWriter writer = new FileWriter(DEFAULT_FILE_NAME, true)) {
+        try (FileWriter writer = new FileWriter(DEFAULT_FILE_NAME, false)) {
             for (DailyLog logEntry : log) {
                 String dateStr = logEntry.getDate().format(dateTimeFormatter);
                 writer.write(dateStr + "," + logEntry.getEvent().getId() + "," + logEntry.getStatus().name()+"\n");
