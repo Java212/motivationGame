@@ -5,11 +5,12 @@
 <head>
   <meta charset="utf-8">
   <title>Dictionary</title>
-  <link rel="stylesheet" href="./styles.css" type="text/css"/>
+  <link rel="stylesheet" href="./stylesDictionary.css" type="text/css"/>
 </head>
 <body>
+<div class="tablePerson">
     <h1> Таблица </h1>
-    <table border="1" cellspacing="0" cellpadding="2">
+    <table  border="1" cellspacing="0" cellpadding="2">
        <tr>
          <th>Name</th>
          <th>Surname</th>
@@ -23,5 +24,6 @@
            </tr>
        </c:forEach>
     </table>
+</div>
 </body>
 </html>

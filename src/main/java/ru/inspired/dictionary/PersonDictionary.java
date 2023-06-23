@@ -15,7 +15,11 @@ public class PersonDictionary {
         personRecords.add(new PersonRecord(id++,"Larisa","Smirnova", "+79174567691"));
         personRecords.add(new PersonRecord(id++,"Tatyna","Ivanova", "+79174567608"));
         personRecords.add(new PersonRecord(id++,"Katy","Romanova", "+79174567646"));
-        personRecords.add(new PersonRecord(id++,"Vladimir","Serov", "+79174567676"));
+        personRecords.add(new PersonRecord(id++,"Igor","Serov", "+79174567676"));
+        personRecords.add(new PersonRecord(id++,"Victor","Semchev", "+79174567567"));
+        personRecords.add(new PersonRecord(id++,"Sergey","Ionov", "+79174567982"));
+        personRecords.add(new PersonRecord(id++,"Olga","Belova", "+79174564563"));
+        personRecords.add(new PersonRecord(id++,"Petr","Goncharov", "+79174565682"));
     }
 
     public List<PersonRecord> getDictionary(){
