@@ -46,7 +46,12 @@ public class TodayResultsWithPageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String destination = "/markEvents.jsp";
-        request.setAttribute("events", motivationEventDao.getMotivationEvents());
+
+        request.setAttribute("events", motivationEventDao.getMotivationEvents()); //request scope, "events" -> List<MotivationEvents>
+
+        //request.getSession(true).setAttribute("events", motivationEventDao.getMotivationEvents()); //session scope
+        //this.getServletContext().setAttribute("events", motivationEventDao.getMotivationEvents()); //application scope
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
         requestDispatcher.forward(request, response);
     }
@@ -67,26 +72,27 @@ public class TodayResultsWithPageServlet extends HttpServlet {
         }
         MotivationScoreCalc calc = new MotivationScoreCalc(0);
         String initialBalance = "Баланс на вчера: " + calc.calculateScore(list);
-//        String[] requestParams = sb.toString().split("&"); //1=on&2=on  , off  doesn't exist
-//        for (MotivationEvent event : motivationEventDao.getMotivationEvents()) {
-//            boolean found = false;
-//            for (String pair : requestParams) {
-//                String[] split = pair.split("=");
-//                if (event.getId() == Integer.parseInt(split[0])) {
-//                    found = true;
-//                }
-//            }
-//            CompletionStatus status = found ? CompletionStatus.DONE : CompletionStatus.FAILED;
-//            DailyLog log = new DailyLog(event, status);
-//            list.add(log);
-//        }
-//        logProcessor.reWriteLog(list);
-//        int balance = calc.calculateScore(list);
+        String[] requestParams = sb.toString().split("&"); //1=on&2=on  , off  doesn't exist
+        for (MotivationEvent event : motivationEventDao.getMotivationEvents()) {
+            boolean found = false;
+            for (String pair : requestParams) {
+                //process empty line
+                String[] split = pair.split("=");
+                if (event.getId() == Integer.parseInt(split[0])) {
+                    found = true;
+                }
+            }
+            CompletionStatus status = found ? CompletionStatus.DONE : CompletionStatus.FAILED;
+            DailyLog log = new DailyLog(event, status);
+            list.add(log);
+        }
+        logProcessor.reWriteLog(list);
+        int balance = calc.calculateScore(list);
         response.setContentType("text/html");
         try (PrintWriter out = response.getWriter()) {
             out.println("<h1> Получен результат за " + LocalDate.now() + "</h1>");
             out.println("<h2> " + initialBalance + "</h2>");
-            //out.println("<h2> Баланс: " + balance + "</h2>");
+            out.println("<h2> Баланс: " + balance + "</h2>");
         }
     }
 }

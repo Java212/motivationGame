@@ -17,7 +17,6 @@ public class HelloServlet extends HttpServlet {
         try (PrintWriter writer = response.getWriter()) {
             writer.println("<h2>Hello from HelloServlet</h2>");
         }
-        //request.getRequestDispatcher("index").forward(request,response);
     }
 
     @Override
