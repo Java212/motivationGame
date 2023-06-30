@@ -2,7 +2,7 @@ package ru.inspired.model;
 
 import java.io.Serializable;
 
-public class User  implements Serializable {
+public class User implements Serializable { // удовлетворяет JavaBean convention
     private String name;
     private String password;
 

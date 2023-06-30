@@ -16,6 +16,7 @@ repositories {
 war {
     baseName = 'motivationGame'
     archiveName 'motivationGame.war'
+    //webXml = file('src/main/resources/web.xml') // copies a file to WEB-INF/web.xml
 }
 
 dependencies {
