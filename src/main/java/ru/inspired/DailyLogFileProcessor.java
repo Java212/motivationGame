@@ -1,5 +1,6 @@
 package ru.inspired;
 
+import org.springframework.stereotype.Component;
 import ru.inspired.model.CompletionStatus;
 import ru.inspired.model.DailyLog;
 import ru.inspired.model.MotivationEvent;
@@ -15,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
+@Component
 public class DailyLogFileProcessor implements DailyLogProcessor {
 
     static final String DATE_FORMAT = "dd.MM.yy";

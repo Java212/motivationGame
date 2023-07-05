@@ -5,10 +5,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>JSTL Example</title>
+  <title>Events list</title>
   </head>
 <body>
-<form method="post" action='<c:url value="/today/jsp" />'>
+<form method="post" action='<c:url value="/today" />'>
     <h1> Заполняем результат за <%=new java.util.Date() %> </h1>
     <ul>
         <c:if test="${events == null}">
