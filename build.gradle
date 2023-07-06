@@ -1,4 +1,4 @@
-plugins {
+ plugins {
     id 'java'
     id 'war'
 }
@@ -10,6 +10,9 @@ ext{
     springVersion = '6.0.9'
 }
 
+ war {
+     duplicatesStrategy = 'INCLUDE'
+ }
 
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
