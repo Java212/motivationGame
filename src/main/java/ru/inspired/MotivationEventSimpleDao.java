@@ -1,11 +1,13 @@
 package ru.inspired;
 
+import org.springframework.stereotype.Component;
 import ru.inspired.model.MotivationEvent;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Component
 public class MotivationEventSimpleDao implements MotivationEventDao{
     private final List<MotivationEvent> events;
 

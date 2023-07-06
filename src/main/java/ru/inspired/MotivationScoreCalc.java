@@ -7,6 +7,10 @@ import java.util.List;
 public class MotivationScoreCalc {
     private final int initialScore;
 
+    public MotivationScoreCalc() {
+        initialScore = 0;
+    }
+
     public MotivationScoreCalc(int initialScore) {
         this.initialScore = initialScore;
     }
