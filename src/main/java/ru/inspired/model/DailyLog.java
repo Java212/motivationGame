@@ -3,9 +3,9 @@ package ru.inspired.model;
 import java.time.LocalDate;
 
 public class DailyLog {
-    LocalDate date;
-    MotivationEvent event;
-    CompletionStatus status;
+    private final LocalDate date;
+    private final MotivationEvent event;
+    private final CompletionStatus status;
 
     public DailyLog(MotivationEvent event, CompletionStatus status) {
         this.date = LocalDate.now();

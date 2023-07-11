@@ -7,12 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ru.inspired.NotesDao;
-import ru.inspired.NotesFileDao;
 import ru.inspired.model.Note;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -28,7 +25,7 @@ public class NotesController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView viewNotes (){
+    public ModelAndView viewNotes() {
         return getModelAndView();
     }
 
@@ -36,7 +33,7 @@ public class NotesController {
         ModelAndView mv = new ModelAndView("notes");
         mv.addObject("notes",
                 notesDao.getNotes().stream().map(note -> {
-                    return new NoteDTO(note.getText(),
+                    return new NoteDto(note.getText(),
                             note.getCreatedTime().format(DateTimeFormatter.ISO_LOCAL_TIME));
                 }).collect(Collectors.toList())
         );
@@ -44,7 +41,7 @@ public class NotesController {
     }
 
     @PostMapping
-    public ModelAndView addNote(String text){
+    public ModelAndView addNote(String text) {
         Note note = new Note(text);
         notesDao.addNote(note);
         return getModelAndView();

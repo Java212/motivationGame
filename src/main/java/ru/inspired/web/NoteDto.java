@@ -1,10 +1,10 @@
 package ru.inspired.web;
 
-public class NoteDTO { //Data Transfer Object
+public class NoteDto { //Data Transfer Object
     private final String text;
     private final String createdDateTime;
 
-    public NoteDTO(String text, String createdDateTime) {
+    public NoteDto(String text, String createdDateTime) {
         this.text = text;
         this.createdDateTime = createdDateTime;
     }

@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 public class TodayController {
 
-    public static Logger LOGGER = LogManager.getLogger(TodayController.class);
+    public static final Logger LOGGER = LogManager.getLogger(TodayController.class);
 
     @Autowired
     private MotivationEventDao motivationEventDao;
