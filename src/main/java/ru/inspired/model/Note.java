@@ -15,7 +15,7 @@ public class Note {
         return text;
     }
 
-    public String getCreatedTimeAsStr() {
-        return createdTime.format(java.time.format.DateTimeFormatter.ISO_LOCAL_TIME);
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
     }
 }

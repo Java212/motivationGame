@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="ru.inspired.model.Note" %>
+<%@ page import="ru.inspired.web.NoteDTO" %>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
 <head>
     <title>Notebook</title>
@@ -21,7 +21,7 @@
                 <c:out value="${note.text}"/>
               </div>
               <div class="small">
-                <c:out value="${note.createdTimeAsStr}"/>
+                <c:out value="${note.createdDateTime}"/>
               </div>
           </li>
         </c:forEach>
