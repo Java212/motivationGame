@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringJUnitWebConfig(locations = "classpath:config.xml")
-class EndpointTest {
+class NotesControllerTest {
 
     MockMvc mockMvc;
 
@@ -24,28 +24,19 @@ class EndpointTest {
 
     @Test
     void testGet() throws Exception {
-        String url = "/today";
+        String url = "/notes";
 
         this.mockMvc.perform(get(url))
                 .andExpect(model().size(1))
                 .andExpect(status().isOk());
     }
-    @Test
-    void testPostWithOneEvent() throws Exception {
-        String url = "/today";
 
-        this.mockMvc.perform(post(url).content("1=on"))
-                .andExpect(model().size(2))
-                .andExpect(model().attribute("yesterday", 0))
-                .andExpect(model().attribute("now", 5))
+    @Test
+    void testPost() throws Exception {
+        String url = "/notes";
+
+        this.mockMvc.perform(post(url).content("hello,wold"))
+                .andExpect(model().size(1))
                 .andExpect(status().isOk());
-    }
-
-    @Test
-    void testPostWithNoEvents() throws Exception {
-        String url = "/today";
-
-        this.mockMvc.perform(post(url).content(""))
-                    .andExpect(status().isOk());
     }
 }
