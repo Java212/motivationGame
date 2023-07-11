@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>JSP Example as index</title>
-  <link rel="stylesheet" href="./styles.css" type="text/css"/>
+  <link rel="stylesheet" href="./static/styles.css" type="text/css"/>
 </head>
 <body>
 <div class="box"> Текущее время <%=new java.util.Date() %> </div>

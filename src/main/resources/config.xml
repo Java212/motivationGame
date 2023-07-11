@@ -7,8 +7,12 @@
 
     <import resource="events.xml"/>
 
-    <context:component-scan base-package="ru.inspired" />
+    <context:component-scan base-package="ru.inspired" >
+      <context:exclude-filter type="regex" expression="ru.inspired.model..*"/>
+    </context:component-scan>
     <mvc:annotation-driven />
+
+    <mvc:resources mapping="/static/**" location="/static/" />
 
     <!-- Define Spring MVC view resolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

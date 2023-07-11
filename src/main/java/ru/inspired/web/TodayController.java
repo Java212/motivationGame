@@ -20,9 +20,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Controller
-public class FillInTodayResultsController {
+public class TodayController {
 
-    public static Logger LOGGER = LogManager.getLogger(FillInTodayResultsController.class);
+    public static Logger LOGGER = LogManager.getLogger(TodayController.class);
 
     @Autowired
     private MotivationEventDao motivationEventDao;
