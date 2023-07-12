@@ -1,35 +1,50 @@
 package ru.inspired.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.inspired.model.Notes;
+import org.springframework.web.servlet.ModelAndView;
+import ru.inspired.NotesDao;
+import ru.inspired.model.Note;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/notes")
 public class NotesController {
 
-    public static List<Notes> notes = new ArrayList<>();
+    private final NotesDao notesDao;
+
+    @Autowired
+    public NotesController(NotesDao notesDao) {
+        this.notesDao = notesDao;
+        notesDao.addNote(new Note("Created on startup for test"));
+    }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String viewNotes(Model model){
-        model.addAttribute("notes",notes);
-        return "notes";
+    public ModelAndView viewNotes() {
+        return getModelAndView();
+    }
+
+    private ModelAndView getModelAndView() {
+        ModelAndView mv = new ModelAndView("notes");
+        mv.addObject("notes",
+                notesDao.getNotes().stream().map(note -> {
+                    return new NoteDto(note.getText(),
+                            note.getCreatedTime().format(DateTimeFormatter.ISO_LOCAL_TIME));
+                }).collect(Collectors.toList())
+        );
+        return mv;
     }
 
     @PostMapping
-    public String addNote(String text){
-        Notes note = new Notes();
-        note.setText(text);
-        note.setTime(LocalDateTime.now());
-        notes.add(note);
-        return "redirect:notes";
+    public ModelAndView addNote(String text) {
+        Note note = new Note(text);
+        notesDao.addNote(note);
+        return getModelAndView();
     }
+
 }

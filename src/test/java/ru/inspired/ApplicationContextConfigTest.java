@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.inspired.web.FillInTodayResultsController;
+import ru.inspired.web.TodayController;
 
 public class ApplicationContextConfigTest {
 
@@ -19,7 +19,7 @@ public class ApplicationContextConfigTest {
                     ClassPathXmlApplicationContext("config.xml");
 
 
-            FillInTodayResultsController controller = context.getBean("fillInTodayResultsController", FillInTodayResultsController.class);
+            TodayController controller = context.getBean("todayController", TodayController.class);
             Assertions.assertNotNull(controller);
         } catch (Exception e) {
             logger.error(e);
