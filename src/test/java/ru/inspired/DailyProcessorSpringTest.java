@@ -1,11 +1,11 @@
 package ru.inspired;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.core.io.ClassPathResource;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Spy;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.inspired.model.CompletionStatus;
 import ru.inspired.model.DailyLog;
 
@@ -14,25 +14,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-//TODO refactor
-// use not real context with  EventFileDao
+@ExtendWith(SpringExtension.class)
 public class DailyProcessorSpringTest {
 
-    static DailyLogFileProcessor processorUnderTest;
+    @Spy
+    MotivationEventDao dao = new MotivationEventTestDao();
 
-    @BeforeAll
-    static void beforeAll() {
-        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
-        reader.loadBeanDefinitions(new ClassPathResource("test-config-short.xml"));
-        processorUnderTest = factory.getBean("dailyLogProcessor", DailyLogFileProcessor.class);
-    }
+    @InjectMocks
+    DailyLogFileProcessor processor;
 
     @Test
     void testMapping() throws ParseException {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
-        DailyLog dailyLog = processorUnderTest.mapDailyLog(dateFormat,"06.06.23,10,DONE");
+        DailyLog dailyLog = processor.mapDailyLog(dateFormat, "06.06.23,10,DONE");
         Assertions.assertEquals(10, dailyLog.getEvent().getId());
         Assertions.assertEquals("some task", dailyLog.getEvent().getDescription());
         Assertions.assertEquals(CompletionStatus.DONE, dailyLog.getStatus());
@@ -43,7 +38,7 @@ public class DailyProcessorSpringTest {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
         Assertions.assertThrows(IllegalArgumentException.class,
-                ()-> processorUnderTest.mapDailyLog(dateFormat,"06.06.23,10,some_stupid_state"));
+                () -> processor.mapDailyLog(dateFormat, "06.06.23,10,some_stupid_state"));
 
     }
 
@@ -52,7 +47,7 @@ public class DailyProcessorSpringTest {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
         Assertions.assertThrows(ParseException.class,
-                ()-> processorUnderTest.mapDailyLog(dateFormat,"2424.24,10,DONE"));
+                () -> processor.mapDailyLog(dateFormat, "2424.24,10,DONE"));
 
     }
 
@@ -61,13 +56,13 @@ public class DailyProcessorSpringTest {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
         Assertions.assertThrows(ParseException.class,
-                ()-> processorUnderTest.mapDailyLog(dateFormat,"not three parts separated by comma"));
+                () -> processor.mapDailyLog(dateFormat, "not three parts separated by comma"));
 
     }
 
     @Test
     void testFileRead() throws IOException {
-        List<DailyLog> dailyLog = processorUnderTest.getLog();
-        Assertions.assertEquals(3,dailyLog.size());
+        List<DailyLog> dailyLog = processor.getLog();
+        Assertions.assertEquals(3, dailyLog.size());
     }
 }

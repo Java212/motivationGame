@@ -12,7 +12,7 @@ public class DailyProcessorMappingTest {
 
     @Test
     void testMapping() throws ParseException {
-        MotivationEventDao eventDao = new MotivationEventFileDao();
+        MotivationEventDao eventDao = new MotivationEventTestDao();
         DailyLogFileProcessor processor = new DailyLogFileProcessor(eventDao);
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
         DailyLog dailyLog = processor.mapDailyLog(dateFormat,"06.06.23,10,DONE");
@@ -23,7 +23,7 @@ public class DailyProcessorMappingTest {
 
     @Test
     void testWrongStateMapping() {
-        MotivationEventDao eventDao = new MotivationEventFileDao();
+        MotivationEventDao eventDao = new MotivationEventTestDao();
         DailyLogFileProcessor processor = new DailyLogFileProcessor(eventDao);
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
         Assertions.assertThrows(IllegalArgumentException.class,
@@ -33,7 +33,7 @@ public class DailyProcessorMappingTest {
 
     @Test
     void testWrongDateMapping() {
-        MotivationEventDao eventDao = new MotivationEventFileDao();
+        MotivationEventDao eventDao = new MotivationEventTestDao();
         DailyLogFileProcessor processor = new DailyLogFileProcessor(eventDao);
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
         Assertions.assertThrows(ParseException.class,
@@ -43,7 +43,7 @@ public class DailyProcessorMappingTest {
 
     @Test
     void testWrongLineMapping() {
-        MotivationEventDao eventDao = new MotivationEventFileDao();
+        MotivationEventDao eventDao = new MotivationEventTestDao();
         DailyLogFileProcessor processor = new DailyLogFileProcessor(eventDao);
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyLogFileProcessor.DATE_FORMAT);
         Assertions.assertThrows(ParseException.class,

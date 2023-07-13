@@ -5,7 +5,7 @@ import ru.inspired.model.MotivationEvent;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MotivationEventFileDao implements MotivationEventDao {
+public class MotivationEventTestDao implements MotivationEventDao {
     @Override
     public List<MotivationEvent> getMotivationEvents() {
         return new LinkedList<>(); //как-то прочитали из фала список объектов MotivationEvent

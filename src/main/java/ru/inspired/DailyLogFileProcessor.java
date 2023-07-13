@@ -1,5 +1,6 @@
 package ru.inspired;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.inspired.model.CompletionStatus;
 import ru.inspired.model.DailyLog;
@@ -23,6 +24,7 @@ public class DailyLogFileProcessor implements DailyLogProcessor {
     private static final String DEFAULT_FILE_NAME = "motivationLog.csv";
     private final MotivationEventDao motivationEventDao;
 
+    @Autowired
     public DailyLogFileProcessor(MotivationEventDao motivationEventDao) {
         this.motivationEventDao = motivationEventDao;
     }

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="ru.inspired.web.NoteDTO" %>
+<%@ page import="ru.inspired.web.NoteDto" %>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
 <head>
     <title>Notebook</title>
