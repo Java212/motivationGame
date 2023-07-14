@@ -14,6 +14,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+//TODO refactor
+// use not real context with  EventFileDao
 public class DailyProcessorSpringTest {
 
     static DailyLogFileProcessor processorUnderTest;

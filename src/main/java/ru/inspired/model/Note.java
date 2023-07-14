@@ -3,29 +3,19 @@ package ru.inspired.model;
 import java.time.LocalDateTime;
 
 public class Note {
+    private final String text;
+    private final LocalDateTime createdTime;
 
+    public Note(String text) {
+        this.text = text;
+        this.createdTime = LocalDateTime.now();
+    }
 
-        private String text;
-        private LocalDateTime dateTime;
+    public String getText() {
+        return text;
+    }
 
-        public Note() {
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public LocalDateTime getTime() {
-            return dateTime.withNano(0);
-        }
-
-
-    public void setTime(LocalDateTime now) {
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
     }
 }
-
-

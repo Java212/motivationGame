@@ -1,0 +1,6 @@
+11.07.23 18:18:18
+test text 1
+next line of test text
+11.07.23 18:19:18
+test text 2
+last line of all texts
