@@ -1,5 +1,8 @@
 package ru.inspired.web;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +19,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/notes")
 public class NotesController {
 
+    public static final Logger LOGGER = LogManager.getLogger(NotesController.class);
+
     private final NotesDao notesDao;
 
     @Autowired
     public NotesController(NotesDao notesDao) {
         this.notesDao = notesDao;
         notesDao.addNote(new Note("Created on startup for test"));
+        LOGGER.info("Notes are ready to use");
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -44,6 +50,7 @@ public class NotesController {
     public ModelAndView addNote(String text) {
         Note note = new Note(text);
         notesDao.addNote(note);
+        LOGGER.info("New note added " + text);
         return getModelAndView();
     }
 
