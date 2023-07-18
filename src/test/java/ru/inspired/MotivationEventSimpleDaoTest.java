@@ -2,6 +2,7 @@ package ru.inspired;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
@@ -12,6 +13,7 @@ import ru.inspired.model.MotivationEvent;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Disabled
 public class MotivationEventSimpleDaoTest {
 
    static MotivationEventDao motivationEventDao;

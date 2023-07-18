@@ -20,6 +20,11 @@ repositories {
 war {
     baseName = 'motivationGame'
     archiveName 'motivationGame.war'
+    from("${project.rootDir}/src/main/resources") {
+        include('config.xml')
+        into('WEB-INF')
+    }
+    webXml = file('src/main/resources/web.xml') // copies a file to WEB-INF/web.xml
 }
 
 dependencies {

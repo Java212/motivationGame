@@ -1,5 +1,6 @@
 package ru.inspired;
 
+import Notes.NotesController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
@@ -14,15 +15,14 @@ public class BeanFactoryConfigTest {
 
     @Test
     void testConfig() {
-        try{
+        try {
             DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
             XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
             reader.loadBeanDefinitions(new ClassPathResource("config.xml"));
 
-            MotivationEventsChecker checker = factory.getBean("motivationChecker", MotivationEventsChecker.class);
-            Assertions.assertNotNull(checker);
-        }
-        catch (Exception e){
+            NotesController controller = factory.getBean("notesController", NotesController.class);
+            Assertions.assertNotNull(controller);
+        } catch (Exception e) {
             logger.error(e);
             Assertions.fail();
         }

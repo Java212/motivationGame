@@ -14,7 +14,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/notes")
-
 public class NotesController {
 
     public static List<Notes> notes = new ArrayList<>();
