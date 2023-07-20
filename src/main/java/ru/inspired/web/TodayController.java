@@ -30,6 +30,11 @@ public class TodayController {
     @Autowired
     private DailyLogProcessor logProcessor;
 
+    @RequestMapping({"/"})
+    public String index() {
+        return "index";
+    }
+
     @RequestMapping(path = "/today", method = RequestMethod.GET)
     public ModelAndView getEventsForToday() {
         ModelAndView mv = new ModelAndView("markEvents");
