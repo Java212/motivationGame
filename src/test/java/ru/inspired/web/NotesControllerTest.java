@@ -1,39 +1,48 @@
 package ru.inspired.web;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.servlet.ModelAndView;
+import ru.inspired.NotesDao;
+import ru.inspired.model.Note;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.util.List;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@ExtendWith(SpringExtension.class)
 class NotesControllerTest {
 
 
-    @Autowired
-    MockMvc mockMvc;
+    @InjectMocks
+    NotesController controller;
+
+    @Mock
+    NotesDao dao;
+
 
     @Test
     void testGet() throws Exception {
-        String url = "/notes";
 
-        this.mockMvc.perform(get(url))
-                .andExpect(model().size(1))
-                .andExpect(status().isOk());
+        Mockito.when(dao.getNotes()).thenReturn(
+                List.of(new Note("new note 1"), new Note("new note 2 "))
+        );
+
+        ModelAndView mv = controller.viewNotes();
+        Assertions.assertEquals("notes", mv.getViewName());
+        List<Note> notes = (List) mv.getModelMap().get("notes");
+        Assertions.assertEquals(2, notes.size());
     }
 
     @Test
-    void testPost() throws Exception {
-        String url = "/notes";
+    void testPostWithException() {
 
-        this.mockMvc.perform(post(url).content("hello,wold"))
-                .andExpect(model().size(1))
-                .andExpect(status().isOk());
+        Mockito.doThrow(RuntimeException.class).when(dao).addNote(Mockito.any(Note.class));
+        Assertions.assertThrows(RuntimeException.class, () -> controller.addNote("some text"));
+
     }
+
 }

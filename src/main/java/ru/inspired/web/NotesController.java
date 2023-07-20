@@ -26,7 +26,6 @@ public class NotesController {
     @Autowired
     public NotesController(NotesDao notesDao) {
         this.notesDao = notesDao;
-        notesDao.addNote(new Note("Created on startup for test"));
         LOGGER.info("Notes are ready to use");
     }
 

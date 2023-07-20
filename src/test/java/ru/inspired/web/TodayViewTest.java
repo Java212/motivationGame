@@ -9,14 +9,15 @@ import org.springframework.http.ResponseEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class NotesViewTest {
+public class TodayViewTest {
 
     @Autowired
     private TestRestTemplate template;
 
     @Test
-    public void getNotes()  {
-        ResponseEntity<String> response = template.getForEntity("/notes", String.class);
-        assertThat(response.getBody()).contains("<h2>Список заметок:</h2>");
+    public void getMotivationEvents()  {
+        ResponseEntity<String> response = template.getForEntity("/today", String.class);
+        assertThat(response.getBody()).contains("form method=\"post\"");
     }
+
 }
