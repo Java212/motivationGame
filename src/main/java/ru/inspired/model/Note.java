@@ -11,6 +11,11 @@ public class Note {
         this.createdTime = LocalDateTime.now();
     }
 
+    public Note(String text, LocalDateTime createdTime) {
+        this.text = text;
+        this.createdTime = createdTime;
+    }
+
     public String getText() {
         return text;
     }

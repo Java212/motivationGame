@@ -5,6 +5,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import ru.inspired.model.Note;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +24,41 @@ public class NotesFileDao implements NotesDao{
     @Override
     public List<Note> getNotes() {
         LOGGER.info("Getting notes from the file repository");
-        return new ArrayList<>();
+        List<Note> Notes = new ArrayList<>();
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("src/test/resources/notes.txt"));
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy.MM.dd HH:mm:ss");
+            LocalDateTime dateTime = null;
+            StringBuilder textBuilder = new StringBuilder();
+
+            for (String line : lines) {
+                try {
+                    dateTime = LocalDateTime.parse(line, formatter);
+                } catch (Exception e) {
+                    String[] temp = line.split(" ");
+                    if (temp.length > 0 && temp[0].equals("test")) {
+                        textBuilder.append(line).append("\n");
+                    }
+                }
+
+                if (dateTime != null && textBuilder.length() > 0) {
+                    Note note = new Note(textBuilder.toString().trim(), dateTime);
+                    Notes.add(note);
+
+                    dateTime = null;
+                    textBuilder.setLength(0);
+                }
+            }
+
+            if (dateTime != null && textBuilder.length() > 0) {
+                Note note = new Note(textBuilder.toString().trim(), dateTime);
+                Notes.add(note);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Notes;
     }
 
     @Override
