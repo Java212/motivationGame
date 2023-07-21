@@ -13,5 +13,6 @@ public class NotesFileDaoTest {
         NotesFileDao nfd = new NotesFileDao();
         List<Note> notes = nfd.getNotes();
         Assertions.assertEquals(2, notes.size());
+        
     }
 }

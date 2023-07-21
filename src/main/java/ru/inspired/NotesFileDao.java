@@ -5,6 +5,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import ru.inspired.model.Note;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +23,21 @@ public class NotesFileDao implements NotesDao{
     @Override
     public List<Note> getNotes() {
         LOGGER.info("Getting notes from the file repository");
-        return new ArrayList<>();
+        List<Note> notes = new ArrayList<>();
+        try (BufferedReader in = new BufferedReader(new FileReader("resources\\notes.csv"))) {
+            String line;
+
+            while ((line = in.readLine()) != null) {
+                String[] lineSplit = line.split(",");
+                notes.add(new Note(lineSplit[1]));
+            }
+
+        } catch (IOException | IndexOutOfBoundsException e) {
+
+            throw new RuntimeException();
+
+        }
+        return notes;
     }
 
     @Override
