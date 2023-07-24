@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Notes</title>
+    <link rel="stylesheet" th:href="@{styles.css}" type="text/css"/>
 </head>
 <body>
 <h1>Заметки</h1>
-<form th:action="@{notes}" method="post">
+<form th:action="@{Notes/notesThymeleaf}" method="post">
     <input type="text" name="text" placeholder="Текст для заметок" required>
     <input type="submit" value="Добавить заметку">
 </form>
@@ -19,8 +20,8 @@
     </tr>
         <tr th:each="note : ${NotesController.notes}">
             <td th:text="${note.getText()}"></td>
+            <td th:text="${note.getTime()}"></td>
         </tr>
 </table>
-
 </body>
 </html>
