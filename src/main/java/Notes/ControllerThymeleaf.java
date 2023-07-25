@@ -3,11 +3,9 @@ package Notes;
 import Notes.model.Notes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,10 +20,10 @@ public class ControllerThymeleaf {
         return "index";
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path="/index", method = RequestMethod.GET)
     public String viewNotes(Model model){
         model.addAttribute("notes",notes);
-        return "notes";
+        return "index";
     }
     @PostMapping ("/notesThymeleaf")
     public String addNote(String text){
@@ -36,11 +34,3 @@ public class ControllerThymeleaf {
         return "redirect:index";
     }
 }
-
-//    public ModelAndView submitData(@ModelAttribute Notes note)
-//    {
-//        ModelAndView modelandview = new ModelAndView();
-//        modelandview.addObject("notes", notes);
-//        modelandview.setViewName("index");
-//        return modelandview;
-//    }
