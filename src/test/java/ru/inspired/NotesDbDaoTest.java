@@ -3,14 +3,17 @@ package ru.inspired;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.inspired.model.Note;
 
 import java.util.List;
 
-@SpringBootTest
+@ExtendWith({SpringExtension.class})
+@ContextConfiguration(classes = {Application.class})
 public class NotesDbDaoTest {
 
     public static final String HELLO_WORLD = "Hello, World!";
