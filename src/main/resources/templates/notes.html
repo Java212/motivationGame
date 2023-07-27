@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Thymeleaf Example as index</title>
+    <title>Notes</title>
     <link rel="stylesheet" th:href="@{styles.css}" type="text/css"/>
 </head>
 
@@ -15,17 +15,16 @@
 </form>
 
 <h2>Список заметок:</h2>
-<!--<ul>-->
-<!--    <c:forEach var="note" items="${notes}">-->
-<!--        <li>-->
-<!--            <div class="box">-->
-<!--                <c:out value="${note.text}"/>-->
-<!--            </div>-->
-<!--            <div class="small">-->
-<!--                <c:out value="${note.createdDateTime}"/>-->
-<!--            </div>-->
-<!--        </li>-->
-<!--    </c:forEach>-->
-<!--</ul>-->
+<ul>
+    <li th:each="note: ${notes}">
+
+            <div class="box">
+                <th:block th:text="${note.text}"/>
+            </div>
+            <div class="small">
+                <th:block th:text="${note.createdDateTime}"/>
+            </div>
+    </li>
+</ul>
 </body>
 </html>
