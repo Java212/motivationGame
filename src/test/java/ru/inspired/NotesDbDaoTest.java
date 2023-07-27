@@ -26,7 +26,7 @@ public class NotesDbDaoTest {
         template.execute("""
                 CREATE TABLE notes
                 (
-                    id integer NOT NULL ,
+                    id IDENTITY NOT NULL ,
                     text varchar NOT NULL,
                     date_time timestamp,
                     CONSTRAINT notes_pkey PRIMARY KEY (id)

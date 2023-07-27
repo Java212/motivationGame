@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import ru.inspired.model.Note;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @Primary
@@ -18,7 +17,7 @@ public class NotesDbDao implements NotesDao {
 
     public static final Logger LOGGER = LogManager.getLogger(NotesDbDao.class);
     private static final String SELECT_ALL = "select id, text, date_time from notes";
-    private static final String INSERT = "insert into notes values (? , ? , ?)";
+    private static final String INSERT_NOTE = "insert into notes(text,date_time) values(? , ?)";
     private final JdbcTemplate jdbcTemplate;
 
 
@@ -37,13 +36,12 @@ public class NotesDbDao implements NotesDao {
     @Override
     public void addNote(Note note) {
         try {
-            Optional<Integer> max = jdbcTemplate.query("select max(id) as max from notes", (resultSet, i) -> resultSet.getInt(1)).stream().findFirst();
-            int maxId = max.orElse(0);
-            jdbcTemplate.update(INSERT, (maxId + 1), note.getText(), note.getCreatedTime());
+
+            jdbcTemplate.update(INSERT_NOTE, note.getText(), note.getCreatedTime());
         } catch (DataIntegrityViolationException ex){
             LOGGER.info("Data collision with notes");
             addNote(note); //retry
-            // inform user
+            // or inform user
         }
     }
 }
