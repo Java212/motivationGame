@@ -10,6 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import ru.inspired.DailyLogProcessor;
 import ru.inspired.MotivationEventDao;
@@ -35,12 +37,11 @@ public class TodayResultsWithPageServlet extends HttpServlet {
 
     @Override
     public void init()  {
-        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
-        reader.loadBeanDefinitions(new ClassPathResource("config.xml"));
+        ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
 
-        motivationEventDao = factory.getBean("motivationEventDao", MotivationEventDao.class);
-        logProcessor = factory.getBean("dailyLogProcessor", DailyLogProcessor.class);
+
+        motivationEventDao = context.getBean("motivationEventDao", MotivationEventDao.class);
+        logProcessor = context.getBean("dailyLogProcessor", DailyLogProcessor.class);
 
     }
 
