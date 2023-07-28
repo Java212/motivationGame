@@ -1,5 +1,7 @@
 package ru.inspired;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.inspired.model.CompletionStatus;
 import ru.inspired.model.DailyLog;
 import ru.inspired.model.MotivationEvent;
@@ -15,12 +17,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
+@Component
 public class DailyLogFileProcessor implements DailyLogProcessor {
 
     static final String DATE_FORMAT = "dd.MM.yy";
     private static final String DEFAULT_FILE_NAME = "motivationLog.csv";
     private final MotivationEventDao motivationEventDao;
 
+    @Autowired
     public DailyLogFileProcessor(MotivationEventDao motivationEventDao) {
         this.motivationEventDao = motivationEventDao;
     }

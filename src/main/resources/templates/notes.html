@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Notes</title>
+    <link rel="stylesheet" th:href="@{styles.css}" type="text/css"/>
+</head>
+
+<body>
+
+<h1>Заметки</h1>
+<form action="notes" method="post">
+    <input type="text" name="text" placeholder="Текст для заметок" />
+    <input type="submit" value="Добавить заметку" />
+</form>
+
+<h2>Список заметок:</h2>
+<ul>
+    <li th:each="note: ${notes}">
+
+            <div class="box">
+                <th:block th:text="${note.text}"/>
+            </div>
+            <div class="small">
+                <th:block th:text="${note.createdDateTime}"/>
+            </div>
+    </li>
+</ul>
+</body>
+</html>
