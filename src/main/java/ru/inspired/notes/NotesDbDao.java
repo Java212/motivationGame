@@ -1,18 +1,17 @@
-package ru.inspired;
+package ru.inspired.notes;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.inspired.model.Note;
 
 import java.util.List;
 
 @Component
-@Primary
+@Profile("db")
 public class NotesDbDao implements NotesDao {
 
     public static final Logger LOGGER = LogManager.getLogger(NotesDbDao.class);

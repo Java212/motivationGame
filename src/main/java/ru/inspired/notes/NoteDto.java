@@ -1,4 +1,4 @@
-package ru.inspired.web;
+package ru.inspired.notes;
 
 public class NoteDto { //Data Transfer Object
     private final String text;

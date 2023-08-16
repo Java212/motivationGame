@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.inspired.DailyLogProcessor;
+import ru.inspired.DailyStatusDao;
 import ru.inspired.MotivationEventDao;
 import ru.inspired.MotivationScoreCalc;
-import ru.inspired.model.CompletionStatus;
-import ru.inspired.model.DailyLog;
+import ru.inspired.model.CompletionState;
+import ru.inspired.model.DailyStatus;
 import ru.inspired.model.MotivationEvent;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class TodayController {
     private MotivationEventDao motivationEventDao;
 
     @Autowired
-    private DailyLogProcessor logProcessor;
+    private DailyStatusDao dailyStatusDao;
 
     @RequestMapping({"/"})
     public String index() {
@@ -46,7 +46,7 @@ public class TodayController {
     public ModelAndView returnResults(@RequestBody(required = false) String payload) throws IOException {
 
         ModelAndView mv = new ModelAndView("result");
-        List<DailyLog> list = readDailyLogFile();
+        List<DailyStatus> list = readDailyStatuses();
         MotivationScoreCalc calc = new MotivationScoreCalc(0);
         int initialBalance = calc.calculateScore(list);
         mv.addObject("yesterday", initialBalance);
@@ -61,23 +61,23 @@ public class TodayController {
                     found = true;
                 }
             }
-            CompletionStatus status = found ? CompletionStatus.DONE : CompletionStatus.FAILED;
-            DailyLog log = new DailyLog(event, status);
-            list.add(log);
+            CompletionState state = found ? CompletionState.DONE : CompletionState.FAILED;
+            DailyStatus dailyStatus = new DailyStatus(event, state);
+            list.add(dailyStatus);
         }
 
-        logProcessor.reWriteLog(list);
+        dailyStatusDao.saveDailyStatuses(list);
         int balance = calc.calculateScore(list);
         mv.addObject("now", balance);
         return mv;
     }
 
-    private List<DailyLog> readDailyLogFile() {
-        List<DailyLog> list = new LinkedList<>();
+    private List<DailyStatus> readDailyStatuses() {
+        List<DailyStatus> list = new LinkedList<>();
         try {
-            list.addAll(logProcessor.getLog());
+            list.addAll(dailyStatusDao.getDailyStatuses());
         } catch (IOException e) {
-            LOGGER.warn("Motivation Events are not read!");
+            LOGGER.warn("Daily statuses are not read!");
         }
         return list;
     }

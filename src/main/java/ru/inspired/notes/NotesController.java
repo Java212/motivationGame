@@ -1,4 +1,4 @@
-package ru.inspired.web;
+package ru.inspired.notes;
 
 
 import org.apache.logging.log4j.LogManager;
@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ru.inspired.NotesDao;
-import ru.inspired.model.Note;
 
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;

@@ -1,6 +1,4 @@
-package ru.inspired;
-
-import ru.inspired.model.Note;
+package ru.inspired.notes;
 
 import java.util.List;
 

@@ -21,53 +21,50 @@ repositories {
 
 dependencies {
 
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    // https://mvnrepository.com/artifact/org.springframework/spring-web
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.0.9'
+
     implementation ('org.springframework.boot:spring-boot-starter-web:3.1.1'){
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
-    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
-    //implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.10'
-
-    // https://mvnrepository.com/artifact/org.postgresql/postgresql
-    runtimeOnly('org.postgresql:postgresql:42.6.0')
-
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.1.1'
-
-
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.1.1'
 
     // https://mvnrepository.com/artifact/log4j/log4j
     implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
 
-    // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
-    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.1.1'
 
-    // https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api
-    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
-    // https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl
-    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.1.1'
 
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.1.1'
+
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    runtimeOnly('org.postgresql:postgresql:42.6.0')
+
+    // https://mvnrepository.com/artifact/org.liquibase/liquibase-core
+    implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.23.0'
+
+//testing libs
 
     // https://mvnrepository.com/artifact/org.mockito/mockito-core
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.3.1'
-    // testImplementation group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.1'
 
-    // https://mvnrepository.com/artifact/com.h2database/h2
-    testImplementation 'com.h2database:h2:2.2.220'
-
-
     // https://mvnrepository.com/artifact/org.hamcrest/hamcrest-junit
     testImplementation('org.hamcrest:hamcrest-junit:2.0.0.0'){
         exclude group:'junit', module:'junit'
     }
+
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    testRuntimeOnly('com.h2database:h2:2.2.220')
 
 }
 

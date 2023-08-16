@@ -1,6 +1,6 @@
 package ru.inspired;
 
-import ru.inspired.model.DailyLog;
+import ru.inspired.model.DailyStatus;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ public class MotivationScoreCalc {
         this.initialScore = initialScore;
     }
 
-    public int calculateScore(List<DailyLog> log){
+    public int calculateScore(List<DailyStatus> log){
         int score = initialScore;
-        for(DailyLog logEntry: log){
+        for(DailyStatus logEntry: log){
             switch (logEntry.getStatus()){
                 case DONE -> score += logEntry.getEvent().getBonus();
                 case FAILED -> score -= logEntry.getEvent().getFee();

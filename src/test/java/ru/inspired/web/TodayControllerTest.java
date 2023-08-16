@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -13,6 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles(profiles = "db")
 class TodayControllerTest {
 
     @Autowired
@@ -33,8 +35,8 @@ class TodayControllerTest {
 
         this.mockMvc.perform(post(url).content("1=on"))
                 .andExpect(model().size(2))
-                .andExpect(model().attribute("yesterday", 5))
-                .andExpect(model().attribute("now", 10))
+                .andExpect(model().attribute("yesterday", 0))
+                .andExpect(model().attribute("now", 5))
                 .andExpect(status().isOk());
     }
 

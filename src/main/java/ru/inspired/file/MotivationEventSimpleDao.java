@@ -1,19 +1,23 @@
-package ru.inspired;
+package ru.inspired.file;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import ru.inspired.MotivationEventDao;
 import ru.inspired.model.MotivationEvent;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Component
-public class MotivationEventSimpleDao implements MotivationEventDao{
+@Profile("file")
+public class MotivationEventSimpleDao implements MotivationEventDao {
     private final List<MotivationEvent> events;
 
-    @Autowired
-    public MotivationEventSimpleDao(List<MotivationEvent> events) {
-        this.events = events;
+    public MotivationEventSimpleDao() {
+        this.events = List.of(new MotivationEvent(1, "сделать что-то полезное", 5, 0),
+                new MotivationEvent(2, "сделать что-то менее полезное", 3, 0)
+        );
     }
 
     @Override

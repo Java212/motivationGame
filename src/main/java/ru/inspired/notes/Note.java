@@ -1,4 +1,4 @@
-package ru.inspired.model;
+package ru.inspired.notes;
 
 import java.time.LocalDateTime;
 

@@ -14,10 +14,4 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public List<MotivationEvent> events() {
-        return List.of(new MotivationEvent(1, "сделать что-то полезное", 5, 0),
-                new MotivationEvent(2, "сделать что-то менее полезное", 3, 0)
-        );
-    }
 }

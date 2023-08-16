@@ -1,9 +1,9 @@
-package ru.inspired;
+package ru.inspired.notes;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import ru.inspired.model.Note;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,6 +23,7 @@ import java.util.List;
 * line 2 .. N: long text of mote
 * Line N+1: date again as marker of next note or end of file */
 @Component
+@Profile("file")
 public class NotesFileDao implements NotesDao{
 
     public static final Logger LOGGER = LogManager.getLogger(NotesFileDao.class);

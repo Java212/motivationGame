@@ -4,8 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.inspired.model.CompletionStatus;
-import ru.inspired.model.DailyLog;
+import ru.inspired.model.CompletionState;
+import ru.inspired.model.DailyStatus;
 import ru.inspired.model.MotivationEvent;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class MotivationScoreCalcTest {
     @Test
     void testCalculationOfSingle() {
         MotivationEvent event = new MotivationEvent(1,"test",5,0);
-        List<DailyLog> list = List.of(new DailyLog(event, CompletionStatus.DONE));
+        List<DailyStatus> list = List.of(new DailyStatus(event, CompletionState.DONE));
         MotivationScoreCalc calc = new MotivationScoreCalc(0);
         logger.warn("test is ending");
         Assertions.assertEquals(5,calc.calculateScore(list));
@@ -26,7 +26,7 @@ public class MotivationScoreCalcTest {
     @Test
     void testCalculationOfTwo() {
         MotivationEvent event = new MotivationEvent(1,"test",5,5);
-        List<DailyLog> list = List.of(new DailyLog(event, CompletionStatus.DONE), new DailyLog(event, CompletionStatus.FAILED));
+        List<DailyStatus> list = List.of(new DailyStatus(event, CompletionState.DONE), new DailyStatus(event, CompletionState.FAILED));
         MotivationScoreCalc calc = new MotivationScoreCalc(0);
         Assertions.assertEquals(0,calc.calculateScore(list));
     }
