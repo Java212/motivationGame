@@ -22,16 +22,8 @@ public class NotesDbDaoTest {
     NotesDbDao dao;
 
     @BeforeEach
-    public void insertData() {
-        template.execute("DROP TABLE IF EXISTS notes");
-        template.execute("""
-                CREATE TABLE notes
-                (
-                    id IDENTITY NOT NULL ,
-                    text varchar NOT NULL,
-                    date_time timestamp,
-                    CONSTRAINT notes_pkey PRIMARY KEY (id)
-                )""");
+    public void dropData() {
+        template.execute("delete from notes");
     }
 
     @Test

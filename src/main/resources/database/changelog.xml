@@ -7,4 +7,7 @@
     <changeSet id="2" author="inspiredKatya">
         <sqlFile path="database/changeset-2.sql"/>
     </changeSet>
+    <changeSet id="3" author="inspiredKatya">
+        <sqlFile path="database/changeset-3.sql"/>
+    </changeSet>
 </databaseChangeLog>

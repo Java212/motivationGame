@@ -15,7 +15,7 @@ import java.util.List;
 public class NotesDbDao implements NotesDao {
 
     public static final Logger LOGGER = LogManager.getLogger(NotesDbDao.class);
-    private static final String SELECT_ALL = "select id, text, date_time from notes";
+    private static final String SELECT_ALL = "select note_id, text, date_time from notes";
     private static final String INSERT_NOTE = "insert into notes(text,date_time) values(? , ?)";
     private final JdbcTemplate jdbcTemplate;
 
