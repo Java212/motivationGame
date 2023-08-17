@@ -13,6 +13,7 @@ import ru.inspired.MotivationEventDao;
 import ru.inspired.MotivationScoreCalc;
 import ru.inspired.model.CompletionState;
 import ru.inspired.model.DailyStatus;
+import ru.inspired.model.DataRelatedException;
 import ru.inspired.model.MotivationEvent;
 
 import java.io.IOException;
@@ -51,8 +52,8 @@ public class TodayController {
         int initialBalance = calc.calculateScore(list);
         mv.addObject("yesterday", initialBalance);
 
-        String[] requestParams = (payload==null || payload.isEmpty())? new String[0]
-                :payload.split("&"); //1=on&2=on  , off  doesn't exist
+        String[] requestParams = (payload == null || payload.isEmpty()) ? new String[0]
+                : payload.split("&"); //1=on&2=on  , off  doesn't exist
         for (MotivationEvent event : motivationEventDao.getMotivationEvents()) {
             boolean found = false;
             for (String pair : requestParams) {
@@ -76,7 +77,7 @@ public class TodayController {
         List<DailyStatus> list = new LinkedList<>();
         try {
             list.addAll(dailyStatusDao.getDailyStatuses());
-        } catch (IOException e) {
+        } catch (DataRelatedException e) {
             LOGGER.warn("Daily statuses are not read!");
         }
         return list;

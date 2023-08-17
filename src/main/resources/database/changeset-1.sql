@@ -33,6 +33,8 @@ CREATE TABLE IF NOT EXISTS public.daily_statuses
     note varchar,
     date_of_check  date NOT NULL DEFAULT CURRENT_DATE,
     motivation_event_id integer NOT NULL,
+    calculated_score integer NOT NULL,
+    completion_state varchar NOT NULL,
     CONSTRAINT daily_statuses_pkey PRIMARY KEY (daily_status_id),
      CONSTRAINT daily_statuses_motivation_events_fkey
           FOREIGN KEY(motivation_event_id)

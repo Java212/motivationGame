@@ -8,9 +8,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.servlet.ModelAndView;
-import ru.inspired.notes.NotesDao;
-import ru.inspired.notes.Note;
-import ru.inspired.notes.NotesController;
 
 import java.util.List;
 

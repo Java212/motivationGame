@@ -9,10 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import ru.inspired.DailyStatusDao;
 import ru.inspired.MotivationEventDao;
-import ru.inspired.MotivationEventDbDao;
 import ru.inspired.model.MotivationEvent;
 import ru.inspired.notes.NotesDao;
-import ru.inspired.notes.NotesDbDao;
 
 import java.util.List;
 
@@ -34,9 +32,9 @@ public class TodayViewTest {
     NotesDao notesDao;
 
     @Test
-    public void getMotivationEvents()  {
+    public void getMotivationEvents() {
         Mockito.when(eventDao.getMotivationEvents())
-                .thenReturn(List.of(new MotivationEvent(1,"text",1,1)));
+                .thenReturn(List.of(new MotivationEvent(1, "text", 1, 1)));
         ResponseEntity<String> response = template.getForEntity("/today", String.class);
         assertThat(response.getBody()).contains("form method=\"post\"");
     }

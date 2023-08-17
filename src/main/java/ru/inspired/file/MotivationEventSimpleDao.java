@@ -1,6 +1,5 @@
 package ru.inspired.file;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import ru.inspired.MotivationEventDao;
@@ -27,6 +26,6 @@ public class MotivationEventSimpleDao implements MotivationEventDao {
 
     @Override
     public MotivationEvent getEventById(int id) throws NoSuchElementException {
-        return events.stream().filter(e->e.getId() == id).findFirst().get();
+        return events.stream().filter(e -> e.getId() == id).findFirst().get();
     }
 }
