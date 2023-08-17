@@ -50,7 +50,8 @@ public class NotesDbDaoTest {
     public void test_insert_twice() {
         Note note1 = new Note(HELLO_WORLD);
         dao.addNote(note1);
-        dao.addNote(note1);
+        Note note2 = new Note(HELLO_WORLD);
+        dao.addNote(note2);
         List<Note> list = dao.getNotes();
         Assertions.assertEquals(2, list.size());
         Assertions.assertEquals(HELLO_WORLD, list.get(0).getText());
