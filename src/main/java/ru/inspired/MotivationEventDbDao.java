@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @Profile("db")
-public class MotivationEventDbDao implements MotivationEventDao{
+public class MotivationEventDbDao implements MotivationEventDao {
 
     public static final String SELECT_ALL = "select * from motivation_events";
 
@@ -26,7 +26,7 @@ public class MotivationEventDbDao implements MotivationEventDao{
     @Override
     public MotivationEvent getEventById(int id) {
         return template.query(SELECT_ALL, (rs, rowNum) -> new MotivationEvent(rs.getInt("motivation_event_id"),
-                rs.getString("text"), rs.getInt("bonus"), rs.getInt("fee"))).stream()
-                .filter(e->e.getId()==id).findFirst().orElseThrow();
+                        rs.getString("text"), rs.getInt("bonus"), rs.getInt("fee"))).stream()
+                .filter(e -> e.getId() == id).findFirst().orElseThrow();
     }
 }

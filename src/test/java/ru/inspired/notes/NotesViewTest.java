@@ -24,14 +24,14 @@ public class NotesViewTest {
     public void insertData() {
         template.execute("DROP TABLE IF EXISTS notes");
         template.execute("""
-                CREATE TABLE notes
-                (
-                    id IDENTITY NOT NULL ,
-                    text varchar NOT NULL,
-                    date_time timestamp default CURRENT_TIMESTAMP(),
-                    CONSTRAINT notes_pkey PRIMARY KEY (id)
-                );
-        """);
+                        CREATE TABLE notes
+                        (
+                            id IDENTITY NOT NULL ,
+                            text varchar NOT NULL,
+                            date_time timestamp default CURRENT_TIMESTAMP(),
+                            CONSTRAINT notes_pkey PRIMARY KEY (id)
+                        );
+                """);
         template.execute("insert into notes(id,text) values(1, 'test message')");
     }
 

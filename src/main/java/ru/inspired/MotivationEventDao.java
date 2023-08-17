@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface MotivationEventDao {
     List<MotivationEvent> getMotivationEvents();
+
     MotivationEvent getEventById(int id);
 }

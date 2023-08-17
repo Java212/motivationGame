@@ -19,15 +19,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /* file format
-* line 1: datetime as dd.MM.yy hh:mm:ss
-* line 2 .. N: long text of mote
-* Line N+1: date again as marker of next note or end of file */
+ * line 1: datetime as dd.MM.yy hh:mm:ss
+ * line 2 .. N: long text of mote
+ * Line N+1: date again as marker of next note or end of file */
 @Component
 @Profile("file")
-public class NotesFileDao implements NotesDao{
+public class NotesFileDao implements NotesDao {
 
     public static final Logger LOGGER = LogManager.getLogger(NotesFileDao.class);
-    private static final String DATE_TIME_REGEX = "^([1-9]|([012][0-9])|(3[01]))\\.([0]{0,1}[1-9]|1[012])\\.\\d\\d (20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d" ;
+    private static final String DATE_TIME_REGEX = "^([1-9]|([012][0-9])|(3[01]))\\.([0]{0,1}[1-9]|1[012])\\.\\d\\d (20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d";
 
     @Override
     public List<Note> getNotes() {
@@ -45,23 +45,23 @@ public class NotesFileDao implements NotesDao{
             LocalDateTime dateTime = LocalDateTime.now();
             StringBuilder noteText = new StringBuilder();
             while ((line = in.readLine()) != null) {
-                if(line.matches(DATE_TIME_REGEX) && readNote){
-                    list.add(new Note(noteText.toString(),dateTime));
+                if (line.matches(DATE_TIME_REGEX) && readNote) {
+                    list.add(new Note(noteText.toString(), dateTime));
                     noteText = new StringBuilder();
                 }
-                if(line.matches(DATE_TIME_REGEX)){
+                if (line.matches(DATE_TIME_REGEX)) {
                     dateTime = Instant.ofEpochMilli(dateFormat.parse(line.trim()).getTime())
                             .atZone(ZoneId.systemDefault())
                             .toLocalDateTime();
                     readNote = true;
                 }
-                if(readNote && !line.matches(DATE_TIME_REGEX)){
+                if (readNote && !line.matches(DATE_TIME_REGEX)) {
                     noteText.append(line).append("\n");
                 }
             }
-            list.add(new Note(noteText.toString(),dateTime));
+            list.add(new Note(noteText.toString(), dateTime));
         } catch (IOException e) {
-            throw new RuntimeException ("Smth wrong in reading the file");
+            throw new RuntimeException("Smth wrong in reading the file");
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }

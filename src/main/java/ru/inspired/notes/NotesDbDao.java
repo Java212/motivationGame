@@ -37,7 +37,7 @@ public class NotesDbDao implements NotesDao {
         try {
 
             jdbcTemplate.update(INSERT_NOTE, note.getText(), note.getCreatedTime());
-        } catch (DataIntegrityViolationException ex){
+        } catch (DataIntegrityViolationException ex) {
             LOGGER.info("Data collision with notes");
             addNote(note); //retry
             // or inform user

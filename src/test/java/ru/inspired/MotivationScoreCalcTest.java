@@ -16,18 +16,18 @@ public class MotivationScoreCalcTest {
 
     @Test
     void testCalculationOfSingle() {
-        MotivationEvent event = new MotivationEvent(1,"test",5,0);
+        MotivationEvent event = new MotivationEvent(1, "test", 5, 0);
         List<DailyStatus> list = List.of(new DailyStatus(event, CompletionState.DONE));
         MotivationScoreCalc calc = new MotivationScoreCalc(0);
         logger.warn("test is ending");
-        Assertions.assertEquals(5,calc.calculateScore(list));
+        Assertions.assertEquals(5, calc.calculateScore(list));
     }
 
     @Test
     void testCalculationOfTwo() {
-        MotivationEvent event = new MotivationEvent(1,"test",5,5);
+        MotivationEvent event = new MotivationEvent(1, "test", 5, 5);
         List<DailyStatus> list = List.of(new DailyStatus(event, CompletionState.DONE), new DailyStatus(event, CompletionState.FAILED));
         MotivationScoreCalc calc = new MotivationScoreCalc(0);
-        Assertions.assertEquals(0,calc.calculateScore(list));
+        Assertions.assertEquals(0, calc.calculateScore(list));
     }
 }
