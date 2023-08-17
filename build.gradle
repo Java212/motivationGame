@@ -19,6 +19,7 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
 
     // https://mvnrepository.com/artifact/org.springframework/spring-web
@@ -39,6 +40,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.1.1'
 
     implementation group: 'org.hibernate.orm', name: 'hibernate-core', version: '6.2.7.Final'
+    annotationProcessor "org.hibernate.orm:hibernate-jpamodelgen:6.2.7.Final"
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.1.1'
@@ -68,6 +70,16 @@ dependencies {
     // https://mvnrepository.com/artifact/com.h2database/h2
     testRuntimeOnly('com.h2database:h2:2.2.220')
 
+}
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file("src/generated/java")
+}
+sourceSets {
+    generated {
+        java {
+            srcDirs = ['src/generated/java']
+        }
+    }
 }
 
 test {

@@ -1,10 +1,20 @@
 package ru.inspired.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "motivation_events")
 public class MotivationEvent {
-    private final int id;
-    private final String description;
-    private final int bonus;
-    private final int fee;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "motivation_event_id")
+    private  int id;
+    @Column(name ="text")
+    private  String description;
+    private  int bonus;
+    private  int fee;
+    MotivationEvent() {
+    }
 
     public MotivationEvent(int id, String description, int bonus, int fee) {
         this.id = id;
@@ -28,4 +38,5 @@ public class MotivationEvent {
     public int getFee() {
         return fee;
     }
+
 }

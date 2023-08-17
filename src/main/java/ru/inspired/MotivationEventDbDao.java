@@ -1,8 +1,8 @@
 package ru.inspired;
 
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.inspired.model.MotivationEvent;
 
@@ -12,21 +12,18 @@ import java.util.List;
 @Profile("db")
 public class MotivationEventDbDao implements MotivationEventDao {
 
-    public static final String SELECT_ALL = "select * from motivation_events";
+    public static final String SELECT_ALL = "select e from MotivationEvent e";
 
     @Autowired
-    JdbcTemplate template;
+    EntityManager entityManager;
 
     @Override
     public List<MotivationEvent> getMotivationEvents() {
-        return template.query(SELECT_ALL, (rs, rowNum) -> new MotivationEvent(rs.getInt("motivation_event_id"),
-                rs.getString("text"), rs.getInt("bonus"), rs.getInt("fee")));
+        return entityManager.createQuery(SELECT_ALL, MotivationEvent.class).getResultList();
     }
 
     @Override
     public MotivationEvent getEventById(int id) {
-        return template.query(SELECT_ALL, (rs, rowNum) -> new MotivationEvent(rs.getInt("motivation_event_id"),
-                        rs.getString("text"), rs.getInt("bonus"), rs.getInt("fee"))).stream()
-                .filter(e -> e.getId() == id).findFirst().orElseThrow();
+        return new MotivationEvent(1,"test",1,2);
     }
 }

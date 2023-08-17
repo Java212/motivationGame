@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -57,5 +58,21 @@ public class NotesDbDaoTest {
         Assertions.assertEquals(HELLO_WORLD, list.get(0).getText());
     }
 
+    @Test
+    void testNamedQuery() {
+        LocalDateTime dateTime = LocalDateTime.of(2022,1,31,12,5);
+        Note noteLastYear = new Note("text of old note", dateTime);
+        dao.addNote(noteLastYear); //2022 31 jan
 
+        LocalDateTime dateTime1 = LocalDateTime.of(2023,12,31,12,5);
+        Note noteThisYear = new Note("text of new note", dateTime1);
+        dao.addNote(noteThisYear); //2023 31 dec
+
+        LocalDateTime dateTimeNow = LocalDateTime.of(2023,8,16,23,59);
+        List<Note> notes = dao.getNotesFilteredByDate(dateTimeNow); //2023 16 aug
+
+        Assertions.assertTrue(notes.contains(noteLastYear));
+        Assertions.assertFalse(notes.contains(noteThisYear));
+
+    }
 }

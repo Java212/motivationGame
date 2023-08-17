@@ -3,10 +3,14 @@ package ru.inspired.notes;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Entity
 @Table(name = "notes")
+@NamedQueries(
+        @NamedQuery(name = "notes.filterByDate", query = "select zzz from Note zzz where zzz.createdTime < :date")
+)
 public class Note {
 
     @Id
@@ -46,5 +50,18 @@ public class Note {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return Objects.equals(text, note.text) && Objects.equals(createdTime, note.createdTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(text, createdTime);
     }
 }
