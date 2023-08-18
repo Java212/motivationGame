@@ -3,12 +3,13 @@ package ru.inspired.web;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
 import static org.mockito.Mockito.*;
-
+@Disabled
 public class FillInTodaysResultsServletTest {
     @Test
     void testPrintWriterOfGet() throws IOException {

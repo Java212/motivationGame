@@ -12,6 +12,7 @@ import ru.inspired.model.Note;
 import java.util.List;
 
 @Component
+@Primary
 public class NotesDbDao implements NotesDao {
 
     public static final Logger LOGGER = LogManager.getLogger(NotesDbDao.class);
@@ -35,7 +36,6 @@ public class NotesDbDao implements NotesDao {
     @Override
     public void addNote(Note note) {
         try {
-
             jdbcTemplate.update(INSERT_NOTE, note.getText(), note.getCreatedTime());
         } catch (DataIntegrityViolationException ex){
             LOGGER.info("Data collision with notes");

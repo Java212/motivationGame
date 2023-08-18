@@ -26,7 +26,7 @@ import java.util.List;
 * line 2 .. N: long text of mote
 * Line N+1: date again as marker of next note or end of file */
 @Component
-@Primary
+
 public class NotesFileDao implements NotesDao{
 
     public static final Logger LOGGER = LogManager.getLogger(NotesFileDao.class);
@@ -78,12 +78,9 @@ public class NotesFileDao implements NotesDao{
          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy hh:mm:ss");
         String timeToString = note.getCreatedTime().format(formatter);note.getCreatedTime();
         String text = note.getText();
-
-        Object resources;
         try (FileWriter fw = new FileWriter(FILE_PATH, true)){
             fw.write("\n" + timeToString);
             fw.write("\n" + text);
-
              LOGGER.info("Writing a new text");
         } catch (IOException e) {
             e.printStackTrace();

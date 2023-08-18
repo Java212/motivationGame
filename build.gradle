@@ -30,6 +30,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     runtimeOnly('org.postgresql:postgresql:42.6.0')
+    // https://mvnrepository.com/artifact/org.liquibase/liquibase-core
+    implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.23.0'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.1.1'
