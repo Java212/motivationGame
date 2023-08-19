@@ -7,7 +7,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.inspired.model.CompletionState;
 import ru.inspired.model.DailyStatus;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -22,7 +21,7 @@ public class DailyStatusFileDaoTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyStatusFileDao.DATE_FORMAT);
         DailyStatus dailyStatus = dao.mapDailyLog(dateFormat, "06.06.23,10,DONE,5");
         Assertions.assertEquals(10, dailyStatus.getMotivationEventId());
-        Assertions.assertEquals(CompletionState.DONE, dailyStatus.getStatus());
+        Assertions.assertEquals(CompletionState.DONE, dailyStatus.getState());
         Assertions.assertEquals(5, dailyStatus.getCalculationScore());
     }
 

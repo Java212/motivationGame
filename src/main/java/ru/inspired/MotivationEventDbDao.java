@@ -1,29 +1,34 @@
 package ru.inspired;
 
-import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
+import ru.inspired.model.DataRelatedException;
 import ru.inspired.model.MotivationEvent;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Profile("db")
-public class MotivationEventDbDao implements MotivationEventDao {
+public interface MotivationEventDbDao extends CrudRepository<MotivationEvent, Integer>, MotivationEventDao {
 
-    public static final String SELECT_ALL = "select e from MotivationEvent e";
-
-    @Autowired
-    EntityManager entityManager;
+    Logger LOGGER = LogManager.getLogger(MotivationEventDbDao.class);
 
     @Override
-    public List<MotivationEvent> getMotivationEvents() {
-        return entityManager.createQuery(SELECT_ALL, MotivationEvent.class).getResultList();
+    default List<MotivationEvent> getMotivationEvents() {
+        LOGGER.info("getting daily statuses");
+        List<MotivationEvent> result = new ArrayList<>();
+        findAll().iterator().forEachRemaining(result::add);
+        return result;
     }
 
     @Override
-    public MotivationEvent getEventById(int id) {
-        return new MotivationEvent(1,"test",1,2);
+    default MotivationEvent getEventById(int id) {
+        Optional<MotivationEvent> e = findById(id);
+        return e.orElseThrow(DataRelatedException::new);
     }
 }

@@ -17,7 +17,7 @@ public class DailyProcessorMappingTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DailyStatusFileDao.DATE_FORMAT);
         DailyStatus dailyStatus = processor.mapDailyLog(dateFormat, "06.06.23,10,DONE,5");
         Assertions.assertEquals(10, dailyStatus.getMotivationEventId());
-        Assertions.assertEquals(CompletionState.DONE, dailyStatus.getStatus());
+        Assertions.assertEquals(CompletionState.DONE, dailyStatus.getState());
     }
 
     @Test

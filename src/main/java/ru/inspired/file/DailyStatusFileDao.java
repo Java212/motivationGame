@@ -64,7 +64,7 @@ public class DailyStatusFileDao implements DailyStatusDao {
                 String dateStr = logEntry.getDate().format(dateTimeFormatter);
                 writer.write(dateStr + ","
                         + logEntry.getMotivationEventId() + ","
-                        + logEntry.getStatus().name() + ","
+                        + logEntry.getState().name() + ","
                         + logEntry.getCalculationScore() + "\n");
             }
         } catch (IOException e) {

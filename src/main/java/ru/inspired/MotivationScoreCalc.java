@@ -14,7 +14,7 @@ public class MotivationScoreCalc {
     public int calculateScore(List<DailyStatus> log) {
         int score = initialScore;
         for (DailyStatus logEntry : log) {
-            switch (logEntry.getStatus()) {
+            switch (logEntry.getState()) {
                 case DONE -> score += logEntry.getCalculationScore();
                 case FAILED -> score -= logEntry.getCalculationScore();
             }
