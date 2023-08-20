@@ -1,0 +1,1 @@
+insert into notes(text) values ("text for test");

@@ -7,21 +7,13 @@
     <link rel="stylesheet" th:href="@{styles.css}" type="text/css"/>
 </head>
 <body>
-<h1>Заметки</h1>
-<form th:action="@{/notesThymeleaf}" method="post">
-    <input type="text" name="text" placeholder="Текст для заметок" required>
-    <input type="submit" value="Добавить заметку">
-</form>
-<h2>Список заметок:</h2>
-<table>
-    <tr>
-        <th>Text notes</th>
-        <th>Data notes</th>
-    </tr>
-        <tr th:each="note : ${notes}">
-            <td th:text="${note.getText()}"></td>
-            <td th:text="${note.getTime()}"></td>
-        </tr>
-</table>
+<h1>Создание заметок</h1>
+                    <form th:action="@{/index}" method="post">
+                        <input type="text" name="text" placeholder="Текст для заметок">
+                        <input type="submit" value="Добавить заметку">
+                    </form>
+    <button type = "button">
+    <a href = "/notesThymeleaf">Показать записки</a>
+    </button>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <link rel="stylesheet" th:href="@{styles.css}" type="text/css"/>
+</head>
+<body>
+<h2>Список заметок:</h2>
+<table>
+    <tr>
+        <th>Text notes</th>
+        <th>Data notes</th>
+    </tr>
+    <tr th:each="note : ${notes}">
+        <td th:text="${note.getText()}"></td>
+        <td th:text="${note.getTime()}"></td>
+    </tr>
+</table>
+</body>
+</html>
