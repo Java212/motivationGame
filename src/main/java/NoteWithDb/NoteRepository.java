@@ -7,4 +7,6 @@ public interface NoteRepository {
     List<Note> getNotes();
 
     void addNotes(Note note);
+
+    List<Note> filtrNoteById(int id);
 }

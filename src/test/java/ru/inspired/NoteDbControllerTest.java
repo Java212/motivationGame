@@ -3,6 +3,7 @@ package ru.inspired;
 import NoteWithDb.Note;
 import NoteWithDb.NoteRepository;
 import Notes.Application;
+import jakarta.persistence.TypedQuery;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +21,24 @@ public class NoteDbControllerTest {
     NoteRepository noteDao;
 
     @Test
-    void testAddNote(){
+    void test_addNote(){
         Note note = new Note("hallo");
         noteDao.addNotes(note);
         Assertions.assertEquals(1, noteDao.getNotes().size());
     }
 
     @Test
-    void test(){
+    void test_getNoteById(){
         Note note1 = new Note("hallo");
         Note note2 = new Note("test");
         Note note3 = new Note("java");
+        Note note4 = new Note("spring");
         noteDao.addNotes(note1);
         noteDao.addNotes(note2);
         noteDao.addNotes(note3);
-        List<Note> listNotes = noteDao.getNotes();
-        Assertions.assertTrue(listNotes.contains(note2));
+        noteDao.addNotes(note4);
+        int numberId=2;
+        List<Note> listNotes = noteDao.filtrNoteById(numberId);
+        Assertions.assertEquals(2, listNotes.size());
     }
 }

@@ -36,4 +36,10 @@ public class NoteDb implements NoteRepository{
             System.out.println(ex);
         }
     }
+    @Override
+    @Transactional
+    public List<Note> filtrNoteById(int id){
+        TypedQuery<Note> query = entityManager.createNamedQuery("selectById", Note.class);
+        return query.getResultList();
+    }
 }

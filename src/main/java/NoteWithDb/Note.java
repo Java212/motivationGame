@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name="selectAllNotes", query = "Select n from Note n"),
-        @NamedQuery(name="selectById", query = "select n from Note n.id : numberId")
+        @NamedQuery(name="selectById", query = "select n from Note n.id >: numberId")
 }
 )
 public class Note {
