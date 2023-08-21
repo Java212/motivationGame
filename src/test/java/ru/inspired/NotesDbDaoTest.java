@@ -5,15 +5,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.inspired.model.Note;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-@ExtendWith({SpringExtension.class})
-@ContextConfiguration(classes = {Application.class})
+@SpringBootTest
+@ActiveProfiles(profiles = "db")
 public class NotesDbDaoTest {
 
     public static final String HELLO_WORLD = "Hello, World!";
@@ -24,16 +27,9 @@ public class NotesDbDaoTest {
     NotesDbDao dao;
 
     @BeforeEach
-    public void insertData() {
-        template.execute("DROP TABLE IF EXISTS notes");
-        template.execute("""
-                CREATE TABLE notes
-                (
-                    id IDENTITY NOT NULL ,
-                    text varchar NOT NULL,
-                    date_time timestamp,
-                    CONSTRAINT notes_pkey PRIMARY KEY (id)
-                )""");
+    public void dropData() {
+
+        template.execute("delete from notes");
     }
 
     @Test
@@ -60,11 +56,10 @@ public class NotesDbDaoTest {
     public void test_insert_twice() {
         Note note1 = new Note(HELLO_WORLD);
         dao.addNote(note1);
-        dao.addNote(note1);
+        Note note2 = new Note(HELLO_WORLD);
+        dao.addNote(note2);
         List<Note> list = dao.getNotes();
         Assertions.assertEquals(2, list.size());
         Assertions.assertEquals(HELLO_WORLD, list.get(0).getText());
     }
-
-
 }
