@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h2>Welcome</h2>
+<div sec:authorize="hasRole('ROLE_USER')">
+        <a href="./today"> Заполнить журнал событий сегодня </a>
+</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="./events"> Редактировать мотивационные цели </a>
+</div>
+<div sec:authorize="isAuthenticated()">
+    Text visible only to  authenticated users.
+</div>
+
+    Authenticated username:
+    <div sec:authentication="name"></div>
+    Authenticated user roles:
+    <div sec:authentication="principal.authorities"></div>
+
+</body>
+</html>

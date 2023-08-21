@@ -6,13 +6,20 @@ import jakarta.persistence.*;
 @Table(name = "motivation_events")
 public class MotivationEvent {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "motivation_event_id")
     private  int id;
     @Column(name ="text")
     private  String description;
     private  int bonus;
     private  int fee;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(
+            name = "user_id",
+            updatable = false
+    )
+    private User user;
     MotivationEvent() {
     }
 
@@ -39,4 +46,11 @@ public class MotivationEvent {
         return fee;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

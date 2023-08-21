@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 import ru.inspired.model.DataRelatedException;
 import ru.inspired.model.MotivationEvent;
+import ru.inspired.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public interface MotivationEventDbDao extends CrudRepository<MotivationEvent, In
     Logger LOGGER = LogManager.getLogger(MotivationEventDbDao.class);
 
     @Override
-    default List<MotivationEvent> getMotivationEvents() {
+    default List<MotivationEvent> getMotivationEvents(User user) {
         LOGGER.info("getting daily statuses");
         List<MotivationEvent> result = new ArrayList<>();
         findAll().iterator().forEachRemaining(result::add);

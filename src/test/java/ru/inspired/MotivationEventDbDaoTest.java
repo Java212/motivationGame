@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import ru.inspired.model.MotivationEvent;
+import ru.inspired.model.User;
 
 import java.util.List;
 
@@ -18,7 +19,9 @@ public class MotivationEventDbDaoTest {
 
     @Test
     void testReading() {
-        List<MotivationEvent> qs = dao.getMotivationEvents();
+
+        User user = new User(1);
+        List<MotivationEvent> qs = dao.getMotivationEvents(user);
         Assertions.assertEquals(2, qs.size());
         Assertions.assertEquals("Почистить зубы 2 раза", qs.get(0).getDescription());
     }

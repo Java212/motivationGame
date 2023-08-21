@@ -40,6 +40,7 @@ public class DailyStatus {
 
     public DailyStatus(LocalDate date, int motivationEventId, CompletionState status, int calculatedScore) {
         MotivationEvent event = new MotivationEvent(motivationEventId,"test",calculatedScore,calculatedScore);
+        event.setUser(new User(1));
         this.motivationEvent = event;
         this.date = date;
         this.state = status;

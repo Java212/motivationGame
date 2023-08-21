@@ -26,7 +26,7 @@ public class DailyStatusFileDao implements DailyStatusDao {
     private static final String DEFAULT_FILE_NAME = "motivationLog.csv";
 
     @Override
-    public List<DailyStatus> getDailyStatuses() throws DataRelatedException {
+    public List<DailyStatus> getDailyStatuses(int userId) throws DataRelatedException {
         List<DailyStatus> list = new LinkedList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(DEFAULT_FILE_NAME)) {

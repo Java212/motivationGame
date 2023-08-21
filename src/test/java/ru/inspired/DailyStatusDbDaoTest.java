@@ -15,7 +15,7 @@ public class DailyStatusDbDaoTest {
 
     @Test
     void testReading() {
-        Assertions.assertDoesNotThrow(() -> dao.getDailyStatuses());
+        Assertions.assertDoesNotThrow(() -> dao.getDailyStatuses(1));
 
     }
 

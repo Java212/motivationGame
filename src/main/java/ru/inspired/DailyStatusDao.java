@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DailyStatusDao {
 
-    List<DailyStatus> getDailyStatuses() throws DataRelatedException;
+    List<DailyStatus> getDailyStatuses(int userId) throws DataRelatedException;
 
     void saveDailyStatuses(List<DailyStatus> statuses) throws DataRelatedException;
 }

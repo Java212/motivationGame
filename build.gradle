@@ -22,8 +22,9 @@ repositories {
 
 dependencies {
 
-    // https://mvnrepository.com/artifact/org.springframework/spring-web
-    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.0.9'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.1.1'
 
     implementation ('org.springframework.boot:spring-boot-starter-web:3.1.1'){
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
@@ -35,6 +36,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.1.1'
+    // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity6
+    implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity6', version: '3.1.1.RELEASE'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.1.1'
@@ -61,6 +64,10 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.1'
+
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.1.1'
+
 
     // https://mvnrepository.com/artifact/org.hamcrest/hamcrest-junit
     testImplementation('org.hamcrest:hamcrest-junit:2.0.0.0'){

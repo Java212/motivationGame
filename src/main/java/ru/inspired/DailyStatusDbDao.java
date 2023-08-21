@@ -19,7 +19,7 @@ public interface DailyStatusDbDao extends CrudRepository<DailyStatus, Integer>, 
     Logger LOGGER = LogManager.getLogger(DailyStatusDbDao.class);
 
     @Override
-    default List<DailyStatus> getDailyStatuses() throws DataRelatedException {
+    default List<DailyStatus> getDailyStatuses(int userId) throws DataRelatedException {
         LOGGER.info("getting daily statuses");
         List<DailyStatus> result = new ArrayList<>();
         findAll().iterator().forEachRemaining(result::add);

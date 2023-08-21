@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import ru.inspired.MotivationEventDao;
 import ru.inspired.model.MotivationEvent;
+import ru.inspired.model.User;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,7 +21,7 @@ public class MotivationEventSimpleDao implements MotivationEventDao {
     }
 
     @Override
-    public List<MotivationEvent> getMotivationEvents() {
+    public List<MotivationEvent> getMotivationEvents(User user) {
         return events;
     }
 

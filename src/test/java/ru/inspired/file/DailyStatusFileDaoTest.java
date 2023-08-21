@@ -54,7 +54,7 @@ public class DailyStatusFileDaoTest {
 
     @Test
     void testFileRead()  {
-        List<DailyStatus> dailyStatus = dao.getDailyStatuses();
+        List<DailyStatus> dailyStatus = dao.getDailyStatuses(1);
         Assertions.assertEquals(3, dailyStatus.size());
     }
 }

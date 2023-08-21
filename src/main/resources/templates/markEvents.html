@@ -10,7 +10,7 @@
     <ul>
         <li th:each="event : ${events}">
             <label th:text="${event.description}">...</label>
-            <input type="checkbox" th:name="${event.id}" />
+            <input type="checkbox" name="boxes"  th:value="${event.id}" />
         </li>
     </ul>
     <input type="submit"/>

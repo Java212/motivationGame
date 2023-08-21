@@ -3,20 +3,18 @@ package ru.inspired.web;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.inspired.DailyStatusDao;
 import ru.inspired.MotivationEventDao;
 import ru.inspired.MotivationScoreCalc;
-import ru.inspired.model.CompletionState;
-import ru.inspired.model.DailyStatus;
-import ru.inspired.model.DataRelatedException;
-import ru.inspired.model.MotivationEvent;
+import ru.inspired.model.*;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,20 +29,22 @@ public class TodayController {
     @Autowired
     private DailyStatusDao dailyStatusDao;
 
-    @RequestMapping({"/"})
-    public String index() {
-        return "index";
-    }
-
     @RequestMapping(path = "/today", method = RequestMethod.GET)
+    @PreAuthorize("authenticated")
     public ModelAndView getEventsForToday() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = ( principal instanceof User)? ((User) principal) : new User(1);
         ModelAndView mv = new ModelAndView("markEvents");
-        mv.addObject("events", motivationEventDao.getMotivationEvents());
+        mv.addObject("events", motivationEventDao.getMotivationEvents(user));
         return mv;
     }
 
     @RequestMapping(path = "/today", method = RequestMethod.POST)
-    public ModelAndView returnResults(@RequestBody(required = false) String payload) throws IOException {
+    @PreAuthorize("authenticated")
+    public ModelAndView returnResults(@RequestParam(value = "boxes", required = false) int[] boxes) {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = ( principal instanceof User)? ((User) principal) : new User(1);
 
         ModelAndView mv = new ModelAndView("result");
         List<DailyStatus> list = readDailyStatuses();
@@ -52,14 +52,14 @@ public class TodayController {
         int initialBalance = calc.calculateScore(list);
         mv.addObject("yesterday", initialBalance);
 
-        String[] requestParams = (payload == null || payload.isEmpty()) ? new String[0]
-                : payload.split("&"); //1=on&2=on  , off  doesn't exist
-        for (MotivationEvent event : motivationEventDao.getMotivationEvents()) {
-            boolean found = false;
-            for (String pair : requestParams) {
-                String[] split = pair.split("=");
-                if (event.getId() == Integer.parseInt(split[0])) {
-                    found = true;
+        for (MotivationEvent event : motivationEventDao.getMotivationEvents(user)) {
+            boolean found =  false;
+            if(boxes != null) {
+                for (int id : boxes) {
+                    if (event.getId() == id) {
+                        found = true;
+                        break;
+                    }
                 }
             }
             CompletionState state = found ? CompletionState.DONE : CompletionState.FAILED;
@@ -76,7 +76,7 @@ public class TodayController {
     private List<DailyStatus> readDailyStatuses() {
         List<DailyStatus> list = new LinkedList<>();
         try {
-            list.addAll(dailyStatusDao.getDailyStatuses());
+            list.addAll(dailyStatusDao.getDailyStatuses(1));
         } catch (DataRelatedException e) {
             LOGGER.warn("Daily statuses are not read!");
         }
