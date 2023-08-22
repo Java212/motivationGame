@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Events list</title>
+</head>
+<body>
+<form method="post" th:action="@{today}">
+    <h1> Заполняем результат за [[${#dates.createNow()}]]</h1>
+    <ul>
+        <li th:each="event : ${events}">
+            <label th:text="${event.description}">...</label>
+            <input type="checkbox" th:name="${event.id}" />
+        </li>
+    </ul>
+    <input type="submit"/>
+</form>
+</body>

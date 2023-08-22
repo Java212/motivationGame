@@ -3,7 +3,6 @@ package ru.inspired;
 import NoteWithDb.Note;
 import NoteWithDb.NoteRepository;
 import Notes.Application;
-import jakarta.persistence.TypedQuery;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

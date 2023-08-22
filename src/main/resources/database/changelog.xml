@@ -10,4 +10,10 @@
        <changeSet  id="1"  author="Alex">
            <sqlFile path="database/changeset-1.sql"/>
     </changeSet>
+    <changeSet  id="2"  author="Alex">
+        <sqlFile path="database/changeset-2.sql"/>
+    </changeSet>
+    <changeSet  id="3"  author="Alex">
+        <sqlFile path="database/changeset-3.sql"/>
+    </changeSet>
 </databaseChangeLog>
