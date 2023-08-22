@@ -24,6 +24,7 @@ public class WebSecurityConfig {
         http.userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/static/**").permitAll()
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/notes").permitAll()
                         .requestMatchers(HttpMethod.GET,"/markEvents").hasRole(Role.ROLE_USER)
                         .requestMatchers("/today").hasRole(Role.ROLE_USER)

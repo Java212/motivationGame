@@ -14,7 +14,7 @@ public class MotivationEvent {
     private  int bonus;
     private  int fee;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(
             name = "user_id",
             updatable = false

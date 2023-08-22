@@ -3,7 +3,7 @@
 <head>
     <title>Please Log In</title>
 </head>
-<body>
+<body th:fragment="login_fragment">
 <h1>Please Log In</h1>
 <div th:if="${param.error}">
     Invalid username and password.</div>

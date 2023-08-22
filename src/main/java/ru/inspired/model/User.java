@@ -23,7 +23,12 @@ public class User implements UserDetails {
     @OneToMany (mappedBy = "user")
     List<MotivationEvent> events = new LinkedList<>();
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id", nullable = false)
+    )
     private Set<Role> roles;
 
     @Override

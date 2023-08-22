@@ -11,8 +11,13 @@ public class ViewController {
         return "menu";
     }
 
-    @RequestMapping({"/login", "/"})
-    public String login() {
-        return "login";
+//    @RequestMapping({"/login"})
+//    public String login() {
+//        return "login";
+//    }
+
+    @RequestMapping({"/"})
+    public String index() {
+        return "index";
     }
 }

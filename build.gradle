@@ -39,9 +39,6 @@ dependencies {
     // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity6
     implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity6', version: '3.1.1.RELEASE'
 
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.1.1'
-
     implementation group: 'org.hibernate.orm', name: 'hibernate-core', version: '6.2.7.Final'
     annotationProcessor "org.hibernate.orm:hibernate-jpamodelgen:6.2.7.Final"
 
@@ -67,12 +64,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
     testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.1.1'
-
-
-    // https://mvnrepository.com/artifact/org.hamcrest/hamcrest-junit
-    testImplementation('org.hamcrest:hamcrest-junit:2.0.0.0'){
-        exclude group:'junit', module:'junit'
-    }
 
     // https://mvnrepository.com/artifact/com.h2database/h2
     testRuntimeOnly('com.h2database:h2:2.2.220')
