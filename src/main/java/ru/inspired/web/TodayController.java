@@ -47,7 +47,7 @@ public class TodayController {
         User user = ( principal instanceof User)? ((User) principal) : new User(1);
 
         ModelAndView mv = new ModelAndView("result");
-        List<DailyStatus> list = readDailyStatuses();
+        List<DailyStatus> list = readDailyStatuses(user.getId());
         MotivationScoreCalc calc = new MotivationScoreCalc(0);
         int initialBalance = calc.calculateScore(list);
         mv.addObject("yesterday", initialBalance);
@@ -73,10 +73,10 @@ public class TodayController {
         return mv;
     }
 
-    private List<DailyStatus> readDailyStatuses() {
+    private List<DailyStatus> readDailyStatuses(int userId) {
         List<DailyStatus> list = new LinkedList<>();
         try {
-            list.addAll(dailyStatusDao.getDailyStatuses(1));
+            list.addAll(dailyStatusDao.getDailyStatuses(userId));
         } catch (DataRelatedException e) {
             LOGGER.warn("Daily statuses are not read!");
         }

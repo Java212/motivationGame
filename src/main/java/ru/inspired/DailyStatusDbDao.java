@@ -11,6 +11,7 @@ import ru.inspired.model.DataRelatedException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Profile("db")
@@ -23,7 +24,7 @@ public interface DailyStatusDbDao extends CrudRepository<DailyStatus, Integer>, 
         LOGGER.info("getting daily statuses");
         List<DailyStatus> result = new ArrayList<>();
         findAll().iterator().forEachRemaining(result::add);
-        return result;
+        return result.stream().filter(dailyStatus -> dailyStatus.getMotivationEvent().getUser().getId()==userId).collect(Collectors.toList());
     }
 
     @Override

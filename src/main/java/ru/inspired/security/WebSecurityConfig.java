@@ -23,9 +23,10 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/static/**").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/notes").permitAll()
+                        .requestMatchers("/user/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/markEvents").hasRole(Role.ROLE_USER)
                         .requestMatchers("/today").hasRole(Role.ROLE_USER)
                         .anyRequest().authenticated()
@@ -34,6 +35,7 @@ public class WebSecurityConfig {
                         .loginPage("/login")
                         .permitAll()
                         .successForwardUrl("/menu")
+                        .failureForwardUrl("/login_error")
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")

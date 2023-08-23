@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Motivation Game</title>
+    <title>Добро пожаловать в игру</title>
+    <link href="../../../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 <body>
-<div th:include="login :: login_fragment"></div>
+<div th:include="fragments/header :: header"></div>
 
-<div>index information </div>
+<div>
+    <li th:each="stat : ${stats}">
+        <label th:text="${stat}">...</label>
+    </li>
+</div>
 
+<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>

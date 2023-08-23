@@ -2,8 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Thymeleaf Example as index</title>
-    <link rel="stylesheet" th:href="@{styles.css}" type="text/css"/>
+    <title>result</title>
+    <link href="../../../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{css/styles.css}" type="text/css"/>
 </head>
 <body>
 <h1> Pезультат на  [[${#dates.createNow()}]] </h1>

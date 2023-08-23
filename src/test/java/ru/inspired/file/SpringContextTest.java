@@ -21,7 +21,7 @@ public class SpringContextTest {
     public void getLoginPage() {
 
         ResponseEntity<String> response = template.getForEntity("/", String.class);
-        assertThat(response.getBody()).contains("<form action=\"/login\"");
+        assertThat(response.getBody()).contains("<title>Добро пожаловать в игру</title>");
     }
 
 }

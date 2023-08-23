@@ -13,11 +13,11 @@ import ru.inspired.model.DailyStatus;
 public class DailyStatusDbDaoTest {
 
     @Autowired
-    CrudRepository<DailyStatus,Integer> dao;
+    DailyStatusDao dao;
 
     @Test
     void testReading() {
-        Assertions.assertDoesNotThrow(() -> dao.findById(1));
+        Assertions.assertDoesNotThrow(() -> dao.getDailyStatuses(1));
     }
 
 }
