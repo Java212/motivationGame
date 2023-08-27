@@ -12,7 +12,7 @@
         <Logger name="org.springframework" level="error">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="ru.inspired" level="trace">
+        <Logger name="ru.inspired" level="debug">
             <AppenderRef ref="Console"/>
         </Logger>
         <Root level="warn">

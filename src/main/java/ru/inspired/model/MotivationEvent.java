@@ -1,5 +1,7 @@
 package ru.inspired.model;
 
+import java.util.Objects;
+
 public class MotivationEvent {
     private final int id;
     private final String description;
@@ -27,5 +29,18 @@ public class MotivationEvent {
 
     public int getFee() {
         return fee;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MotivationEvent that = (MotivationEvent) o;
+        return id == that.id && bonus == that.bonus && fee == that.fee && Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, bonus, fee);
     }
 }

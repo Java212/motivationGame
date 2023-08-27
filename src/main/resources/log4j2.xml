@@ -13,6 +13,9 @@
         <Logger name="org.springframework" level="debug">
             <AppenderRef ref="Console"/>
         </Logger>
+        <Logger name="ru.inspired" level="debug">
+            <AppenderRef ref="Console"/>
+        </Logger>
         <Root level="warn">
             <AppenderRef ref="Console"/>
         </Root>

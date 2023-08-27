@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-		https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="event1"  name="event1" class="ru.inspired.model.MotivationEvent">
         <constructor-arg name="id" value="1"/>
@@ -16,12 +16,33 @@
         <constructor-arg name="fee" value="5"/>
         <constructor-arg name="bonus" value="5"/>
     </bean>
+    <bean id="event3"  name="event3" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="description" value="Сделано домашнее задание"/>
+        <constructor-arg name="fee" value="10"/>
+        <constructor-arg name="bonus" value="10"/>
+    </bean>
+    <bean id="event4"  name="event4" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="description" value="Выполнен план на работе"/>
+        <constructor-arg name="fee" value="0"/>
+        <constructor-arg name="bonus" value="10"/>
+    </bean>
+    <bean id="event5"  name="event5" class="ru.inspired.model.MotivationEvent">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="description" value="Выгуляна собака"/>
+        <constructor-arg name="fee" value="10"/>
+        <constructor-arg name="bonus" value="5"/>
+    </bean>
 
     <bean id="events" name="events" class="java.util.ArrayList">
         <constructor-arg>
             <list>
                 <ref bean="event1" />
                 <ref bean="event2" />
+                <ref bean="event3" />
+                <ref bean="event4" />
+                <ref bean="event5" />
             </list>
         </constructor-arg>
     </bean>
