@@ -38,12 +38,6 @@ public class NotesDbDao implements NotesDao {
 
     }
 
-//    public List<Note> getNotesFilteredByDate(LocalDateTime dateTime) {
-//        TypedQuery<Note>  q = entityManager.createNamedQuery("notes.filterByDate", Note.class);
-//        q.setParameter("date", dateTime);
-//        return q.getResultList();
-//    }
-
     //non JPA way with Hibernate criteria API
     public List<Note> getNotesFilteredByDate(LocalDateTime dateTime) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
