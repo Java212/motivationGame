@@ -1,6 +1,6 @@
-package ru.inspired;
+package ru.inspired.person;
 
-import ru.inspired.model.MotivationEvent;
+import ru.inspired.person.model.MotivationEvent;
 
 import java.util.List;
 

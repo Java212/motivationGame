@@ -4,9 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.inspired.model.CompletionStatus;
-import ru.inspired.model.DailyLog;
-import ru.inspired.model.MotivationEvent;
+import ru.inspired.person.model.CompletionStatus;
+import ru.inspired.person.model.DailyLog;
+import ru.inspired.person.model.MotivationEvent;
+import ru.inspired.person.MotivationScoreCalc;
 
 import java.util.List;
 

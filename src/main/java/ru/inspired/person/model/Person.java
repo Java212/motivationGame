@@ -1,4 +1,4 @@
-package ru.inspired.model;
+package ru.inspired.person.model;
 
 public class Person {
     private String name;

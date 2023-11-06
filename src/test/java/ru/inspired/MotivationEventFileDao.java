@@ -1,6 +1,7 @@
 package ru.inspired;
 
-import ru.inspired.model.MotivationEvent;
+import ru.inspired.person.model.MotivationEvent;
+import ru.inspired.person.MotivationEventDao;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ru.inspired.model;
+package ru.inspired.person.model;
 
 public class MotivationEvent {
     private final int id; // id события

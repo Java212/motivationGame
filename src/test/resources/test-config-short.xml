@@ -6,11 +6,11 @@
 
     <bean id="motivationEventDao2" class="ru.inspired.MotivationEventFileDao"/> <!-- созданный в тестах и для тестов -->
 
-    <bean id="calc" class="ru.inspired.MotivationScoreCalc">
+    <bean id="calc" class="ru.inspired.person.MotivationScoreCalc">
         <constructor-arg name="initialScore" value="0"/>
     </bean>
 
-    <bean id="dailyLogProcessor" class="ru.inspired.DailyLogFileProcessor">
+    <bean id="dailyLogProcessor" class="ru.inspired.person.DailyLogFileProcessor">
         <constructor-arg name="motivationEventDao" ref="motivationEventDao2"/>
     </bean>
 

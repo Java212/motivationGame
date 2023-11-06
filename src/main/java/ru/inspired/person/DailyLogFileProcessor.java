@@ -1,8 +1,8 @@
-package ru.inspired;
+package ru.inspired.person;
 
-import ru.inspired.model.CompletionStatus;
-import ru.inspired.model.DailyLog;
-import ru.inspired.model.MotivationEvent;
+import ru.inspired.person.model.CompletionStatus;
+import ru.inspired.person.model.DailyLog;
+import ru.inspired.person.model.MotivationEvent;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

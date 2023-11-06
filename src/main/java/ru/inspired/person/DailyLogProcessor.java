@@ -1,6 +1,6 @@
-package ru.inspired;
+package ru.inspired.person;
 
-import ru.inspired.model.DailyLog;
+import ru.inspired.person.model.DailyLog;
 
 import java.io.IOException;
 import java.util.List;

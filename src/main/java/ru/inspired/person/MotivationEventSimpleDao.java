@@ -1,12 +1,12 @@
-package ru.inspired;
+package ru.inspired.person;
 
-import ru.inspired.model.MotivationEvent;
+import ru.inspired.person.model.MotivationEvent;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class MotivationEventSimpleDao implements MotivationEventDao{ // нужен для обработки отчета за каждый день
+public class MotivationEventSimpleDao implements MotivationEventDao { // нужен для обработки отчета за каждый день
     private final List<MotivationEvent> events;
 
     public MotivationEventSimpleDao() {

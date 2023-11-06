@@ -1,4 +1,4 @@
-package ru.inspired;
+package ru.inspired.person;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;

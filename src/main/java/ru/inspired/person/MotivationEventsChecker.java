@@ -1,11 +1,11 @@
-package ru.inspired;
+package ru.inspired.person;
 
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.inspired.model.CompletionStatus;
-import ru.inspired.model.DailyLog;
-import ru.inspired.model.MotivationEvent;
+import ru.inspired.person.model.CompletionStatus;
+import ru.inspired.person.model.DailyLog;
+import ru.inspired.person.model.MotivationEvent;
 
 import java.io.IOException;
 import java.io.PrintStream;
